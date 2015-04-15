@@ -1,0 +1,4 @@
+<span>
+= label_tag 'order', t('.order')
+= select_tag 'order', options_for_select( [nil] + (%w[id] + (fields ||= []) + %w[created_at updated_at]).map { |field| [["#{model.human_attribute_name(field)} ↑", "#{field} asc"], ["#{model.human_attribute_name(field)} ↓", "#{field} desc"]] }.reduce(&:+), params[:order])
+</span>

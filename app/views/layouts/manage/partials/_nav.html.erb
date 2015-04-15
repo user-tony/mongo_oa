@@ -1,0 +1,91 @@
+<%
+	nav_attributes =[
+		{
+			class: 'menu-item-parent', icon_class: 'fa fa-lg fa-fw fa-gavel', title: '网站管理', url: '#',
+			submodules: [
+				{
+					class: 'menu-item-parent', icon_class: 'fa fa-lg fa-fw fa-desktop', title: '前端', url: '#',
+					submodules: [
+						{ title: '用户', url: manage_users_path, regexp: Regexp.new('user'), klass: Manage::Account },
+					]
+				},
+			],
+		},
+		{ class: 'menu-item-parent', icon_class: 'fa fa-lg fa-fw fa-gavel', title: '工作日历', url: manage_office_human_events_path,
+			regexp: Regexp.new('office\/human\/events'), klass: Office::Human::Event,
+			submodules: []
+		},
+		{ 
+			class: 'menu-item-parent', icon_class: 'fa fa-lg fa-fw fa-gavel', title: '办公系统', url: '#',
+			submodules: [
+				{
+					class: 'menu-item-parent', icon_class: 'fa fa-lg fa-fw fa-desktop', title: '组织机构设置', url: '#',
+					submodules: [
+						{ title: '公司', url: manage_office_human_companies_path, regexp: Regexp.new('office\/human\/companies'), klass: Office::Human::Company, },
+						{ title: '部门', url: manage_office_human_departments_path, regexp: Regexp.new('office\/human\/departments'), klass: Office::Human::Department, },
+						{ title: '人员', url: manage_office_human_employees_path, regexp: Regexp.new('office\/human\/employees'), klass: Office::Human::Employee, },
+					]
+				},
+				{
+					class: 'menu-item-parent', icon_class: 'fa fa-lg fa-fw fa-desktop', title: '角色设置', url: '#',
+					submodules: [
+						{ title: '账号', url: manage_accounts_path, regexp: Regexp.new('manage\/accounts'), klass: Manage::Account, },
+						{ title: '角色', url: manage_roles_path, regexp: Regexp.new('manage\/roles'), klass: Manage::Role, },
+						{ title: '编辑', url: manage_editors_path, regexp: Regexp.new('editors'), klass: Manage::Editor, },
+						{ title: '授予', url: manage_grants_path, regexp: Regexp.new('manage\/grants'), klass: Manage::Grant, },
+					]
+				},
+			],
+		}
+	]
+
+%>
+<nav>
+	<ul>
+
+		<li class="<%= 'active' if request.path.match(/manage$/) %>">
+			<a href="/manage" title="后台主页"><i class="fa fa-lg fa-fw fa-home"></i> <span class="menu-item-parent">后台主页</span></a>
+		</li>
+		<% nav_attributes.each do |modules| %>
+
+			<% if modules[:submodules].to_a.any?{|a| a[:submodules] ? a[:submodules].to_a.any?{|a1| can?(:show, a1[:klass])} : a[:klass] && can?(:show, a[:klass])} %>
+				<li class="<%= 'active' if modules[:regexp].present? && request.path.match(modules[:regexp]) %>">
+					<%= link_to modules[:url] do %>
+						<i class="<%= modules[:icon_class] %>"></i>
+						<span class="<%=modules[:class] %>"> <%= modules[:title] %> </span>
+					<% end %>
+					<% if modules[:submodules].to_a.any?{|a| a[:submodules].to_a.any?{|a1| can?(:show, a1[:klass])}} %>
+						<ul>
+							<% modules[:submodules].to_a.each do |modules1| %>
+
+								<% if modules1[:submodules].to_a.any?{|a1| can?(:show, a1[:klass])} %>
+								<li class="<%= 'active' if modules1[:klass] && modules1[:regexp] && request.path.to_s.match(modules1[:regexp]) %>">
+										<%= link_to modules1[:url] do %>
+												<i class="<%= modules1[:icon_class] %>"></i>
+												<span class="<%=modules1[:class] %>"> <%= modules1[:title] %> </span>
+										<% end %>
+										<ul>
+											<li>
+												<% modules1[:submodules].to_a.each do |modules2| %>
+													<% if can?(:show, modules2[:klass]) %>
+														<li class="<%= 'active' if modules2[:klass] && modules2[:regexp] && request.path.to_s.match(modules2[:regexp]) %>">
+															<%= link_to modules2[:url] do %>
+																	<i class="<%= modules2[:icon_class] %>"></i>
+																	<span class="<%=modules2[:class] %>"> <%= modules2[:title] %> </span>
+															<% end %>
+														</li>
+													<% end %>
+												<% end %>
+											</li>
+										</ul>
+									</li>
+								<% end %>
+							<% end %>
+						</ul>
+					<% end %>
+				</li>
+			<% end %>
+		<% end %>
+
+	</ul>
+</nav>

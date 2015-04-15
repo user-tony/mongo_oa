@@ -1,0 +1,55 @@
+- company = @company
+- @page_title = "#{company.class.model_name.human} #{company.id} #{company.name}"
+- show = !%w[new edit].include?(params[:action]) && company.valid?
+= render 'manage/shared/prompt', record: company
+.col-md-8.col-md-offset-2
+	h1
+		span style='float:right; font-size:12px;' = render 'actions', record: company if show && company.active?
+		| #{t(show ? :show : company.new_record? ? :new : :edit)} #{company.class.model_name.human}
+br.clear
+= form_for company, url: [:manage, company], method: company.new_record? ? :post : :put, html: {class: 'form-horizontal', role: 'form'} do |f|
+	- options_class = show ? { disabled: 'true'} : {}
+	.clearfix
+	- if show
+		.form-group
+			= f.label :id, { class: 'col-md-2 control-label' }
+			.col-md-8
+				= f.text_field :id, {class: 'form-control'}.merge(options_class)
+			
+	.form-group
+		= f.label :name, { class: 'col-md-2 control-label' }
+		.col-md-8
+			= f.text_field :name, {class: 'form-control'}.merge(options_class)
+			span.help-block
+				= f.error_message_on :name
+			
+	.form-group
+		= f.label :parent_id, { class: 'col-md-2 control-label' }
+		.col-md-8
+			= f.select :parent_id, Office::Human::Company.all.map{|e|[e.name, e.id]}, {include_blank: true} ,{ class: 'form-control'}.merge(options_class)
+			span.help-block
+				= f.error_message_on :parent_id
+
+	.form-group
+		= f.label :description, { class: 'col-md-2 control-label' }
+		.col-md-8
+			= f.text_area :description, { class: 'form-control'}.merge(options_class)
+			span.help-block
+				= f.error_message_on :gender
+				
+	- if show
+		.form-group
+			= f.label :created_at, { class: 'col-md-2 control-label' }
+			.col-md-8
+				= f.text_field :created_at, { class: 'form-control'}.merge(options_class)
+		.form-group
+			= f.label :updated_at, { class: 'col-md-2 control-label' }
+			.col-md-8
+				= f.text_field :updated_at, { class: 'form-control'}.merge(options_class)
+				
+	- unless show
+		fieldset
+			.form-group
+				.col-md-2
+				.col-md-8
+					= f.submit class:'btn btn-primary'

@@ -1,0 +1,14 @@
+zh-CN:
+  activerecord:
+    models:
+      "office/human/department": 部门
+    attributes:
+      "office/human/department":
+        name: 名称
+        english_name: 英文名称
+        description: 描述
+        administrator_id: 主管
+        parent_id: 上级
+        company_id: 公司
+        children: 下级
+        employees: 员工

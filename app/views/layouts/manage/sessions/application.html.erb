@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en-us" id="extr-page">
+<head>
+	<meta charset="utf-8">
+	<title>芒果办公系统 </title>
+	<meta name="description" content="芒果办公系统">
+	<meta name="author" content="芒果办公系统">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<%= csrf_meta_tags %>
+	<%= stylesheet_link_tag "manage/application", :media => "all" %>
+	<!-- #FAVICONS -->
+	<link rel="shortcut icon" href="/assets/favicon/favicon.ico" type="image/x-icon">
+	<link rel="icon" href="/assets/favicon/favicon.ico" type="image/x-icon">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+</head>
+
+<body class="animated fadeInDown">
+	<%= javascript_include_tag "manage/sessions/application" %>
+	<%= yield %>
+	<!--信息提示框-->
+
+	<% if flash[:success] %>
+		<div class="qfd-alert qfd-note qfd-note-warning">
+			<div class="qfd-alert-image qfd-note-icon">
+				<i class="fa fa-exclamation"></i>
+			</div>
+			<div class="qfd-alert-body qfd-note-text"><%= flash[:success] %></div>
+			<a href="#" class="qfd-note-close"><i class="fa fa-times"></i></a>
+		</div>
+	<% end %>
+
+	<% if flash[:errors] %>
+		<div class="qfd-alert qfd-note qfd-note-error">
+			<div class="qfd-alert-image qfd-note-icon">
+				<i class="fa fa-times"></i>
+			</div>
+			<div class="qfd-alert-body qfd-note-text"><%= flash[:errors] %></div>
+			<a href="#" class="qfd-note-close"><i class="fa fa-times"></i></a>
+		</div>
+	<% end %>
+
+	<% if flash[:notice] %>
+		<div class="qfd-alert qfd-note qfd-note-info">
+			<div class="qfd-alert-image qfd-note-icon">
+				<i class="fa fa-info"></i>
+			</div>
+			<div class="qfd-alert-body qfd-note-text">
+				<div class="qfd-alert-body qfd-note-text"><%= flash[:notice] %></div>
+			</div>
+			<a href="#" class="qfd-note-close"><i class="fa fa-times"></i></a>
+		</div>
+	<% end %>
+	<!--信息提示框-->
+	<script type="text/javascript">
+		$(".qfd-note-close").click(function(){
+			$(this).parent().fadeOut(500, function(){
+				$(this).remove();
+			});
+		});
+	</script>
+</body>
+</html>

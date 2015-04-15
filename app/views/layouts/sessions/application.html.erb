@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en-us" id="extr-page">
+<head>
+	<meta charset="utf-8">
+	<title>千帆渡后台管理系统 </title>
+	<meta name="description" content="千帆渡后台管理系统">
+	<meta name="author" content="千帆渡后台管理系统">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<%= csrf_meta_tags %>
+	<%= stylesheet_link_tag "manage/sessions/application", :media => "all" %>
+	<!-- #FAVICONS -->
+	<link rel="shortcut icon" href="/assets/favicon/favicon.ico" type="image/x-icon">
+	<link rel="icon" href="/assets/favicon/favicon.ico" type="image/x-icon">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<style type="text/css">
+		/*信息提示框*/
+		.qfd-alert{position:fixed;width:40%;top:30%;left:25%;z-index:999999999999;
+			-webkit-animation: fadeOut 5s linear forwards;
+			-moz-animation: fadeOut 5s linear forwards;
+			-o-animation: fadeOut 5s linear forwards;
+			-ms-animation: fadeOut 5s linear forwards;
+			animation: fadeOut 5s linear forwards;
+		}
+		.qfd-alert-image,.qfd-alert-body{display:table-cell;vertical-align:middle;}
+		.qfd-alert-image{padding-right:24px;}
+		.qfd-alert-body{width:100%;}
+
+		.qfd-note{overflow:hidden;color:white;background-color:#9b59b6;}
+		.qfd-note-secondary{background-color:#34495e;}
+		.qfd-note-success{background-color:#27ae60;}
+		.qfd-note-warning{background-color:#f39c12;}
+		.qfd-note-error{background-color:#e74c3c;}
+		.qfd-note-info{background-color:#3498db;}
+		.qfd-note-icon,.qfd-note-text{padding:12px 24px;}
+		.qfd-note-icon{min-width:80px;text-align:center;font-size:32px;background-color:rgba(0, 0, 0, 0.25);}
+		.qfd-note-text{padding-right:72px;font-size:18px;}
+		.qfd-note-close{position:absolute;top:18px;right:24px;font-size:24px;color:white;}
+		/*信息提示框*/
+	</style>
+</head>
+
+<body class="animated fadeInDown">
+	<%= javascript_include_tag "manage/sessions/application" %>
+	<%= yield %>
+	<!--信息提示框-->
+
+	<% if flash %>
+		<div class="qfd-alert qfd-note <% flash[:success] ? 'qfd-note-success' : flash[:error] ? 'qfd-note-error' : 'qfd-note-warning'%> ">
+			<div class="qfd-alert-image qfd-note-icon">
+				<i class="fa <% flash[:success] ? 'fa-check' : flash[:error] ? 'fa-times' :  'fa-exclamation'%> "></i>
+			</div>
+			<div class="qfd-alert-body qfd-note-text"><% flash[:success] || flash[:error] || flash[:notice]%></div>
+			<a href="#" class="qfd-note-close"><i class="fa fa-times"></i></a>
+		</div>
+	<% end %>
+
+	<!--信息提示框-->
+	<script type="text/javascript">
+		$(".qfd-note-close").click(function(){
+			$(this).parent().fadeOut(500, function(){
+				$(this).remove();
+			});
+		});
+	</script>
+</body>
+</html>

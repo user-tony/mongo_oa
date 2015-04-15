@@ -1,0 +1,19 @@
+zh-CN:
+  activerecord:
+    models:
+      "cd/news": 资讯
+    attributes:
+      "cd/news":
+        title: 标题
+        subtitle: 副标题
+        source: 来源
+        url: 地址
+        author: 作者
+        description: 摘要
+        content: 内容
+        category_id: 分类
+        pic: 图片
+        pic_desc: 图片描述
+        tag_list: 标签
+        user_id: 用户
+        readings_count: 阅读数

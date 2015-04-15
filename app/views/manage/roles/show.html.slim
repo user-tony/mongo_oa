@@ -1,0 +1,89 @@
+- role = @role
+- @page_title = "#{role.class.model_name.human} #{role.id} #{role.name}"
+- show = !%w[new edit].include?(params[:action]) && role.valid?
+
+= render 'manage/shared/prompt', record: role
+.col-md-11
+	h1
+		span style='float:right;font-size:12px;' = render 'actions', record: role if show && role.active?
+		| #{t(show ? :show : role.new_record? ? :new : :edit)} #{role.class.model_name.human}
+br.clear
+= form_for role, url: role, method: role.new_record? ? :post : :put, html: {class: 'form-horizontal', role: 'form'} do |f|
+	- options_class =  (h_class = { class: 'form-control' }) && show ? h_class.merge(disabled: 'true') : h_class
+	.clearfix
+	fieldset
+		.form-group
+			= f.label :name, { class: 'col-md-1 control-label' }
+			.col-md-11
+				= f.text_field :name, options_class
+				span.help-block
+					= f.error_message_on :name
+	
+
+					
+	fieldset
+		#role_manage.form-group
+			/ label.all-select
+			/ 	= check_box_tag '', '', false, {class: '' }
+			/ 	| 全选/反
+			.in
+		 		label style="width: 10px"
+				= check_box_tag '', '', false, {class: 'in-control' }
+ 				| 全选/反
+				label style="width: 70px"
+				= check_box_tag '', '', false, {class: 'in-control1' }
+				| 列表
+				label style="width: 53px"
+				= check_box_tag '', '', false, {class: 'in-control2' }
+				| 显示
+				label style="width: 53px"
+				= check_box_tag '', '', false, {class: 'in-control3' }
+				| 创建
+				label style="width: 53px"
+				= check_box_tag '', '', false, {class: 'in-control4' }
+				| 更新
+				label style="width: 53px"
+				= check_box_tag '', '', false, {class: 'in-control5' }
+				| 删除
+				label style="width: 53px"
+				= check_box_tag '', '', false, {class: 'in-control6' }
+				| 发布
+				label style="width: 53px"
+				= check_box_tag '', '', false, {class: 'in-control7' }
+				| 管理
+			- role.attributes.slice!(*%w{id name user_id description destroyed_at updater_id active lock_version created_at updated_at}).each do |field, ids|
+				.item.clearfix
+					label.col-md-1.control-label.classify
+						= check_box_tag '', '', false, {class: 'all', 'data-name' => "#{field}_num" }
+						= t(field.to_s)
+					.col-md-11
+						= f.hidden_field field, {id: "#{field}_num"}
+						.checkbox-inline.item-detail
+							- role.class.const_get('FUNCTIONS').each do |num, action|
+								label.checkbox-inline style="width: 120px"
+									= check_box_tag field, num, role.get_manage_attrs(ids).include?(num), disabled: show, class: "action_role #{field}", id: '', action: field, style: 'color:silver', name: "#{field}_num"
+									= t(".#{action}".to_sym)
+									= t(field)
+	fieldset
+		.form-group
+			= f.label :description, { class: 'col-md-1 control-label' }
+			.col-md-11
+				= f.text_area :description, options_class
+				span.help-block
+					= f.error_message_on :description
+	- if show
+		.form-group
+			= f.label :created_at, { class: 'col-md-1 control-label' }
+			.col-md-11
+				= f.text_field :created_at, options_class
+		.form-group
+			= f.label :updated_at, { class: 'col-md-1 control-label' }
+			.col-md-11
+				= f.text_field :updated_at, options_class
+	- unless show
+		fieldset
+			.form-group
+				.col-md-1
+				.col-md-11
+					= f.submit class:'btn btn-primary', name: ''
+

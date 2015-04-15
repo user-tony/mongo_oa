@@ -1,0 +1,7 @@
+<span>
+= label_tag 'per_page', t('.per_page')
+= select_tag 'per_page', options_for_select([nil, 10, 20, 50, 100, 200, 500, 1000, 2000, 5000], params[:per_page].to_i)
+| &nbsp;
+= label_tag 'page', t('.page')
+= text_field_tag 'page', params[:page]
+</span>

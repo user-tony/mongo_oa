@@ -1,0 +1,72 @@
+- editor = @editor
+- @page_title = "#{editor.class.model_name.human} #{editor.id} #{editor.name}"
+- show = !%w[new edit].include?(params[:action]) && editor.valid?
+= render 'manage/shared/prompt', record: editor
+.col-md-8.col-md-offset-2
+	h1
+		span style='float:right;font-size:12px;' = render 'actions', record: editor if show && editor.active?
+		| #{t(show ? :show : editor.new_record? ? :new : :edit)} #{editor.class.model_name.human}
+br.clear
+= form_for editor, url: editor, method: editor.new_record? ? :post : :put, html: {class: 'form-horizontal', role: 'form'} do |f|
+	- options_class = show ? { disabled: 'true'} : {}
+	.clearfix
+	.form-group
+		= f.label :id, { class: 'col-md-2 control-label' }
+		.col-md-8
+			= f.text_field :id, {class: 'form-control'}.merge(options_class)
+		span.help-block
+			= f.error_message_on :name
+	.form-group
+		= f.label :name, { class: 'col-md-2 control-label' }
+		.col-md-8
+			= f.text_field :name, {class: 'form-control'}.merge(options_class)
+			span.help-block
+				= f.error_message_on :name
+			
+	.form-group
+		= f.label :role_id, { class: 'col-md-2 control-label' }
+		.col-md-8
+			= f.text_field :role_id, { class: 'form-control'}.merge(options_class)
+			span.help-block
+				= f.error_message_on :role_id
+
+	.form-group
+		= f.label :grants, '授予', { class: 'col-md-2 control-label' }
+		.col-md-8
+			- (@editor.grants.sort_by { |grant| grant.id || 99999999 } + (show ? [] : 1..10).map{ @editor.grants.new(:active => false) }).each do |grant|
+				= f.fields_for :grants, grant do |sf|
+					- unless show
+						= sf.check_box :active, :onclick => "$(this).next().slideToggle('fast').find('input').prop('disabled', !$(this).prop('checked'));"
+					div(style="#{'display:none;' unless grant.active?}")
+						.form-group
+							= sf.label :role_id, { class: 'col-md-2 control-label' }
+								= sf.collection_select :role_id, Manage::Role.active, :id, :name, { :include_blank => '' }
+								span.help-block
+									= sf.error_message_on :role_id
+						- unless grant.new_record?
+							.form-group
+								= sf.label :created_at, { class: 'col-md-2 control-label' }
+								.col-md-6
+									= grant.created_at && grant.created_at.to_s(:db)
+							.form-group
+								= sf.label :updated_at, { class: 'col-md-2 control-label' }
+								.col-md-6
+									= grant.updated_at && grant.updated_at.to_s(:db)
+	- if show
+		.form-group
+			= f.label :created_at, { class: 'col-md-2 control-label' }
+			.col-md-8
+				= f.text_field :created_at, { class: 'form-control'}.merge(options_class)
+		.form-group
+			= f.label :updated_at, { class: 'col-md-2 control-label' }
+			.col-md-8
+				= f.text_field :updated_at, { class: 'form-control'}.merge(options_class)
+				
+	- unless show
+		fieldset
+			.form-group
+				.col-md-2
+				.col-md-8
+					= f.submit class:'btn btn-primary'
+
+

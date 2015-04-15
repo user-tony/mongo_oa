@@ -1,0 +1,9 @@
+zh-CN:
+  activerecord:
+    models:
+      "read/tag": 标签
+    attributes:
+      "read/tag":
+        title: 标题
+        category_id: 分类
+        guide_id: 指导类型

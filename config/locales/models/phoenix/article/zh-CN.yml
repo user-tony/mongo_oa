@@ -1,0 +1,17 @@
+zh-CN:
+  activerecord:
+    models:
+     phoenix/article: 文章
+    attributes:
+      phoenix/article:
+        title: 标题
+        subtitle: 副标题
+        source: 来源
+        url: 地址
+        author: 作者
+        description: 摘要
+        content: 内容
+        category_id: 分类
+        pic: 图片
+        pic_desc: 图片描述
+        cached_tag_list: 标签

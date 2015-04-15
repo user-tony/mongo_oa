@@ -1,0 +1,137 @@
+<div class="row">
+	<div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
+		<h1 class="page-title txt-color-blueDark"><i class="fa fa-calendar fa-fw "></i>日历</h1>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-sm-12 col-md-12 col-lg-3">
+		<div class="jarviswidget jarviswidget-color-blueDark">
+			<header>
+				<h2> 添加事件 </h2>
+			</header>
+			<div>
+				<div class="widget-body">
+					<%= form_tag manage_office_human_events_path, id: 'add-event-form', onsubmit: 'return false;' do %>
+						<fieldset>
+							<div class="form-group">
+								<label>选择事件类型</label>
+								<div class="btn-group btn-group-sm btn-group-justified" data-toggle="buttons">
+									<% Office::Human::Event::GENRE.each_with_index do |k, i| %>
+									<label class="btn btn-default <%= 'active' if i == 0 %>">
+										<input type="radio" name="event[genre]" id="icon-<%= i %>" value="<%= k[1] %>" checked autocomplete: "off">
+										<i class="text-muted"><%= k[0] %></i> </label>
+									<% end %>
+								</div>
+							</div>
+
+							<div class="form-group">
+								<%= text_field_tag 'event[title]', nil, placeholder: "标题", autocomplete: "off", maxlength: 40, class: 'form-control' %>
+							</div>
+							<div class="form-group">
+								<%= text_area_tag 'event[description]', nil, placeholder: "描述", autocomplete: "off", maxlength: 40, rows: 3, class: 'form-control' %>
+								<p class="note">最大限制40个字</p>
+							</div>
+
+							<!-- <div class="form-group">
+								<%= text_field_tag 'event[start_time]', nil, placeholder: "起始时间", autocomplete: "off", class: 'datepicker form-control' %>
+							</div>
+
+							<div class="form-group">
+								<%= text_field_tag 'event[end_time]', nil, placeholder: "结束时间", autocomplete: "off", class: 'datepicker form-control' %>
+							</div> -->
+
+							<div class="form-group">
+								<label>选择颜色</label>
+								<div class="btn-group btn-group-justified btn-select-tick" data-toggle="buttons">
+									<% Office::Human::Event::COLOR.each_with_index do |color, i| %>
+									<label class="btn bg-color-<%= color %> <%= 'active' if i == 0 %>">
+										<input type="radio" name="event[color]" id="option<%= i+1 %>" value="<%= color %>" checked>
+										<i class="fa fa-check txt-color-white"></i> </label>
+									<% end %>
+								</div>
+							</div>
+
+						</fieldset>
+						<div class="form-actions">
+							<div class="row">
+								<div class="col-md-12">
+									<%= button_tag '创建', class: 'btn btn-default' %>
+								</div>
+							</div>
+						</div>
+					<% end %>
+				</div>
+
+			</div>
+		</div>
+
+		<div class="well well-sm" id="event-container">
+			<form>
+				<legend>
+					拖动事件
+				</legend>
+				<ul id='external-events' class="list-unstyled">
+					<% @events.where(published: false).order(updated_at: :desc).each do |event| %>
+						<li>
+							<span class="bg-color-<%= event.color %> txt-color-white" data-description="<%= raw event.description %>" data-icon="fa-time" data_id="<%= event.id %>"><%= event.title %></span>
+						</li>
+					<% end %>
+				</ul>
+				<div class="checkbox">
+					<label>
+						<input type="checkbox" id="drop-remove" class="checkbox style-0" checked="checked">
+						<span>remove after drop</span> </label>
+				</div>
+			</form>
+		</div>
+	</div>
+	<div class="col-sm-12 col-md-12 col-lg-9">
+		<!-- <div class="jarviswidget jarviswidget-color-blueDark"> -->
+		<!-- <div class="jarviswidget jarviswidget-color-blueDark"> -->
+		<div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
+			<!-- widget options:
+			usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
+
+			data-widget-colorbutton="false"
+			data-widget-editbutton="false"
+			data-widget-togglebutton="false"
+			data-widget-deletebutton="false"
+			data-widget-fullscreenbutton="false"
+			data-widget-custombutton="false"
+			data-widget-collapsed="true"
+			data-widget-sortable="false"
+
+			-->
+			<header>
+				<span class="widget-icon"> <i class="fa fa-calendar"></i> </span>
+				<h2> 我的事件 </h2>
+				<div class="widget-toolbar">
+					<div class="btn-group">
+						<button class="btn dropdown-toggle btn-xs btn-default" data-toggle="dropdown">查看<i class="fa fa-caret-down"></i></button>
+						<ul class="dropdown-menu js-status-update pull-right">
+							<li><a href="javascript:void(0);" id="mt">月</a></li>
+							<li><a href="javascript:void(0);" id="ag">Agenda</a></li>
+							<li><a href="javascript:void(0);" id="td">今天</a></li>
+						</ul>
+					</div>
+				</div>
+			</header>
+
+			<div>
+				<div class="widget-body no-padding">
+					<div class="widget-body-toolbar">
+						<div id="calendar-buttons">
+							<div class="btn-group">
+								<a href="javascript:void(0)" class="btn btn-default btn-xs" id="btn-prev"><i class="fa fa-chevron-left"></i></a>
+								<a href="javascript:void(0)" class="btn btn-default btn-xs" id="btn-next"><i class="fa fa-chevron-right"></i></a>
+							</div>
+						</div>
+					</div>
+					<div id="calendar"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</div>

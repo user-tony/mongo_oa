@@ -1,0 +1,146 @@
+<header id="header">
+
+	<div id="logo-group"><span id="logo"> <%= image_tag('logo-admin.png', alt: '千帆渡') %></span></div>
+
+	<span id="extr-page-header-space"> <span class="hidden-mobile">需要一个账号?</span> <%= link_to '注册账号', new_user_registration_path, target: '_blank', class: 'btn btn-danger' %>  </span>
+
+</header>
+
+<div id="main" role="main">
+
+	<!-- MAIN CONTENT -->
+	<div id="content" class="container">
+
+		<div class="row">
+			<div class="col-xs-12 col-sm-12 col-md-7 col-lg-8 hidden-xs hidden-sm">
+				<h1 class="txt-color-red login-header-big">千帆渡（北京）网络科技有限公司</h1>
+				<div class="hero">
+
+					<div class="pull-left login-desc-box-l">
+						<h4 class="paragraph-header">依托于全球最大的华人媒体网站-“凤凰网”，
+							秉承凤凰卫视传媒集团“拉近全球华人距离”的宗旨，致力于为存在留学愿望的用户提供专业性、权威性、客观性、即时性、公益性的留学信息及相关内容。</h4>
+						<div class="login-app-icons">
+							<%= link_to '查看主页', '/', class: 'btn btn-danger btn-sm' %>
+							<%= link_to '查看主页', '/', class: 'btn btn-danger btn-sm' %>
+						</div>
+					</div>
+
+					<img src="/assets/test/5.jpg" alt="" class="pull-right display-image" style="width:210px">
+
+				</div>
+
+				<div class="row">
+					<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+						<h5 class="about-heading">我们的愿景</h5>
+						<p>
+							打造国际教育领域网络第一媒体，建立全球化的国际教育信息交互网络。
+						</p>
+					</div>
+					<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+						<h5 class="about-heading">我们的原则</h5>
+						<p>
+							专业、权威、客观
+						</p>
+					</div>
+				</div>
+
+			</div>
+			<div class="col-xs-12 col-sm-12 col-md-5 col-lg-4">
+				<div class="well no-padding">
+					<%= form_for @user, url: user_sessions_path, html: { class: 'smart-form client-form'} do |f| %>
+						<header>
+							登录
+						</header>
+
+						<fieldset>
+
+							<section>
+								<%= f.label :email, class: 'label'  %>
+								<label class="input">
+									<i class="icon-append fa fa-user"></i>
+									<%= f.text_field :email, placeholder: '输入邮箱' %>
+									<b class="tooltip tooltip-top-right"><i class="fa fa-user txt-color-teal"></i> 请输入邮箱 </b></label>
+							</section>
+
+							<section>
+								<%= f.label :password, class: 'label'  %>
+								<label class="input"> <i class="icon-append fa fa-lock"></i>
+									<%=f.password_field :password %>
+									<b class="tooltip tooltip-top-right">
+										<i class="fa fa-lock txt-color-teal"></i> 请输入密码 </b> </label>
+								<div class="note">
+									<a href="forgotpassword.html">忘记密码?</a>
+								</div>
+							</section>
+
+							<section>
+								<label class="checkbox">
+									<input type="checkbox" name="remember" checked="">
+									<i></i>记住密码</label>
+							</section>
+						</fieldset>
+						<footer>
+							<button type="submit" class="btn btn-primary">
+								登录
+							</button>
+						</footer>
+					<% end %>
+
+				</div>
+
+				<h5 class="text-center"> - Or sign in using -</h5>
+
+				<ul class="list-inline text-center">
+					<li>
+						<a href="javascript:void(0);" class="btn btn-primary btn-circle"><i class="fa fa-facebook"></i></a>
+					</li>
+					<li>
+						<a href="javascript:void(0);" class="btn btn-info btn-circle"><i class="fa fa-twitter"></i></a>
+					</li>
+					<li>
+						<a href="javascript:void(0);" class="btn btn-warning btn-circle"><i class="fa fa-linkedin"></i></a>
+					</li>
+				</ul>
+
+			</div>
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript">
+	runAllForms();
+
+	$(function() {
+		// Validation
+		$("#new_user").validate({
+			// Rules for form validation
+			rules : {
+				email : {
+					required : true,
+					email : true
+				},
+				password : {
+					required : true,
+					minlength : 3,
+					maxlength : 20
+				}
+			},
+
+			// Messages for form validation
+			messages : {
+				email : {
+					required : '请输入邮箱地址',
+					email : '请输入正确邮箱'
+				},
+				password : {
+					required : '请输入密码'
+				}
+			},
+
+			// Do not change code below
+			errorPlacement : function(error, element) {
+				error.insertAfter(element.parent());
+			}
+		});
+	});
+</script>

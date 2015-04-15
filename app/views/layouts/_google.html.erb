@@ -1,0 +1,26 @@
+<% if Rails.env.production? %>
+	<script>
+		//百度统计
+		var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+		document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F025b610ef2a393ade8e7705a5a1c34c1' type='text/javascript'%3E%3C/script%3E"));
+	</script>
+	<script>
+	var _hmt = _hmt || [];
+	(function() {
+		var hm = document.createElement("script");
+		hm.src = "//hm.baidu.com/hm.js?025b610ef2a393ade8e7705a5a1c34c1";
+		var s = document.getElementsByTagName("script")[0]; 
+		s.parentNode.insertBefore(hm, s);
+		})();
+
+		// 百度竞价推广
+		var _hmt = _hmt || [];
+		(function() {
+		  var hm = document.createElement("script");
+		  hm.src = "//hm.baidu.com/hm.js?eafe484d78fcf73516a7827886d06a85";
+		  var s = document.getElementsByTagName("script")[0]; 
+		  s.parentNode.insertBefore(hm, s);
+		})();
+
+  </script>
+<% end %>

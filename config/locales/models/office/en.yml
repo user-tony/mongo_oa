@@ -1,0 +1,14 @@
+en:
+  activerecord:
+    models:
+      office: Office
+      "office/human": Human
+      "office/human/company": Company
+      "office/human/department": Department
+      "office/human/employee": Employee
+      "office/finance": Finance
+      "office/finance/currency": Currency
+      "office/finance/exchange_rate": Exchange Rate
+      "office/purchase": Purchase
+      "office/purchase/application": Application
+      "office/purchase/provider": Provider

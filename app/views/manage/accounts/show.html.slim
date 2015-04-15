@@ -1,0 +1,66 @@
+- account = @account
+- @page_title = "#{account.class.model_name.human} #{account.id} #{account.name}"
+- show = !%w[new edit].include?(params[:action]) && account.valid?
+= render 'manage/shared/prompt', record: account
+.col-md-8.col-md-offset-2
+	h1
+		span style='float:right;font-size:12px;' = render 'actions', record: account if show && account.active?
+		| #{t(show ? :show : account.new_record? ? :new : :edit)} #{account.class.model_name.human}
+br.clear
+= form_for account, url: account, method: account.new_record? ? :post : :put, html: {class: 'form-horizontal', role: 'form'} do |f|
+	- options_class = show ? { disabled: 'true'} : {}
+	.clearfix
+	- if show
+		.form-group
+			= f.label :id, { class: 'col-md-2 control-label' }
+			.col-md-8
+				= f.text_field :id, {class: 'form-control'}.merge(options_class)
+			
+	.form-group
+		= f.label :name, { class: 'col-md-2 control-label' }
+		.col-md-8
+			= f.text_field :name, {class: 'form-control'}.merge(options_class)
+			span.help-block
+				= f.error_message_on :name
+			
+	.form-group
+		= f.label :gender, { class: 'col-md-2 control-label' }
+		.col-md-8
+			= f.select :gender, %w{男 女}.zip(%w{男 女}),{}, { class: 'form-control'}.merge(options_class)
+			span.help-block
+				= f.error_message_on :gender
+				
+	.form-group
+		= f.label :birthday, { class: 'col-md-2 control-label' }
+		.col-md-8
+			.input-group
+				= f.text_field :birthday, { "data-dateformat" => "dd/mm/yy", class: 'form-control datepicker hasDatepicker'}.merge(options_class)
+				span.input-group-addon
+					i.fa.fa-calendar
+			span.help-block
+				= f.error_message_on :birthday
+				
+	- if show
+		.form-group
+			= f.label :login_at, { class: 'col-md-2 control-label' }
+			.col-md-8
+				= f.text_field :login_at, { class: 'form-control'}.merge(options_class)
+				span.help-block
+					= f.error_message_on :login_at
+			
+	- if show
+		.form-group
+			= f.label :created_at, { class: 'col-md-2 control-label' }
+			.col-md-8
+				= f.text_field :created_at, { class: 'form-control'}.merge(options_class)
+		.form-group
+			= f.label :updated_at, { class: 'col-md-2 control-label' }
+			.col-md-8
+				= f.text_field :updated_at, { class: 'form-control'}.merge(options_class)
+				
+	- unless show
+		fieldset
+			.form-group
+				.col-md-2
+				.col-md-8
+					= f.submit class:'btn btn-primary'

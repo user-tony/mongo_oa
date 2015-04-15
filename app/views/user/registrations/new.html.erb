@@ -1,0 +1,225 @@
+<header id="header">
+
+	<div id="logo-group"><span id="logo"> <%= image_tag('logo-admin.png', alt: '千帆渡') %></span></div>
+
+	<span id="extr-page-header-space"> <span class="hidden-mobile">已经有账号?</span> <%= link_to '我要登录', new_manage_session_path, target: '_blank', class: 'btn btn-danger' %> </span>
+
+</header>
+<div id="main" role="main">
+
+	<!-- MAIN CONTENT -->
+	<div id="content" class="container">
+
+		<div class="row">
+			<div class="col-xs-12 col-sm-12 col-md-7 col-lg-7 hidden-xs hidden-sm">
+				<h1 class="txt-color-red login-header-big">千帆渡（北京）网络科技有限公司</h1>
+				<div class="hero">
+
+					<div class="pull-left login-desc-box-l">
+						<h4 class="paragraph-header">依托于全球最大的华人媒体网站-“凤凰网”，
+							秉承凤凰卫视传媒集团“拉近全球华人距离”的宗旨，致力于为存在留学愿望的用户提供专业性、权威性、客观性、即时性、公益性的留学信息及相关内容。</h4>
+						<div class="login-app-icons">
+							<%= link_to '查看主页', '/', class: 'btn btn-danger btn-sm' %>
+							<!--<%#= link_to '查看主页', '/', class: 'btn btn-danger btn-sm' %>-->
+						</div>
+					</div>
+
+					<%#= image_tag 'login-img.jpg', class:'pull-right display-image'  %>
+
+				</div>
+
+				<!--<div class="row">-->
+					<!--<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">-->
+						<!--<h5 class="about-heading">我们的愿景</h5>-->
+						<!--<p>-->
+							<!--打造国际教育领域网络第一媒体，建立全球化的<br />国际教育信息交互网络。-->
+						<!--</p>-->
+					<!--</div>-->
+					<!--<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">-->
+						<!--<h5 class="about-heading">我们的原则</h5>-->
+						<!--<p>-->
+							<!--专业、权威、客观-->
+						<!--</p>-->
+					<!--</div>-->
+				<!--</div>-->
+
+			</div>
+			<div class="col-xs-12 col-sm-12 col-md-5 col-lg-5">
+				<div class="well no-padding">
+					<%= form_for @user, url: user_registrations_path, html: { class: 'smart-form client-form' } do |f| %>
+						<header> 注册账号 </header>
+
+						<fieldset>
+							<section>
+								<label class="input"> <i class="icon-append fa fa-user"></i>
+									<%= f.text_field :name, placeholder: "显示名称" %>
+									<b class="tooltip tooltip-bottom-right">请输入显示名称</b> </label>
+							</section>
+
+							<section>
+								<label class="input"> <i class="icon-append fa fa-envelope"></i>
+									<%= f.text_field :email, placeholder: '邮箱地址' %>
+									<b class="tooltip tooltip-bottom-right"> 请输入邮箱账号 </b> </label>
+							</section>
+
+							<section>
+								<label class="input"> <i class="icon-append fa fa-lock"></i>
+									<%= f.password_field :password, placeholder: '密码' %>
+									<b class="tooltip tooltip-bottom-right"> 请记住您的密码 </b> </label>
+							</section>
+
+							<section>
+								<label class="input"> <i class="icon-append fa fa-lock"></i>
+									<%= f.password_field :password_confirmation, placeholder: '确认密码' %>
+									<b class="tooltip tooltip-bottom-right"> 第二次输入确认密码 </b> </label>
+							</section>
+						</fieldset>
+
+						<fieldset>
+							<div class="row">
+								<section class="col col-6">
+									<label class="select">
+										<%=f. select :gender, [ ['男', 'male'], ['女', 'female'] ] %> <i></i>
+									</label>
+								</section>
+								<section class="col col-6">
+									<label class="input"> <i class="icon-append fa fa-calendar"></i>
+										<%=f.text_field :birthday, placeholder: '选择您的生日', class: 'datepicker', 'data-dateformat' => 'dd/mm/yy' %>
+									</label>
+								</section>
+							</div>
+
+						</fieldset>
+						<footer>
+							<button type="submit" class="btn btn-primary">
+								注册
+							</button>
+						</footer>
+
+						<div class="message">
+							<i class="fa fa-check"></i>
+							<p>
+								感谢您的注册
+							</p>
+						</div>
+					<% end %>
+
+				</div>
+				<!--<p class="note text-center">*FREE Registration ends on October 2015.</p>-->
+				<!--<h5 class="text-center">- Or sign in using -</h5>-->
+				<!--<ul class="list-inline text-center">-->
+					<!--<li>-->
+						<!--<a href="javascript:void(0);" class="btn btn-primary btn-circle"><i class="fa fa-facebook"></i></a>-->
+					<!--</li>-->
+					<!--<li>-->
+						<!--<a href="javascript:void(0);" class="btn btn-info btn-circle"><i class="fa fa-twitter"></i></a>-->
+					<!--</li>-->
+					<!--<li>-->
+						<!--<a href="javascript:void(0);" class="btn btn-warning btn-circle"><i class="fa fa-linkedin"></i></a>-->
+					<!--</li>-->
+				<!--</ul>-->
+			</div>
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript">
+	runAllForms();
+
+	// Model i agree button
+	$("#i-agree").click(function(){
+		$this=$("#terms");
+		if($this.checked) {
+			$('#myModal').modal('toggle');
+		} else {
+			$this.prop('checked', true);
+			$('#myModal').modal('toggle');
+		}
+	});
+
+	// Validation
+	$(function() {
+		// Validation
+		$("#smart-form-register").validate({
+
+			// Rules for form validation
+			rules : {
+				username : {
+					required : true
+				},
+				email : {
+					required : true,
+					email : true
+				},
+				password : {
+					required : true,
+					minlength : 3,
+					maxlength : 20
+				},
+				passwordConfirm : {
+					required : true,
+					minlength : 3,
+					maxlength : 20,
+					equalTo : '#password'
+				},
+				firstname : {
+					required : true
+				},
+				lastname : {
+					required : true
+				},
+				gender : {
+					required : true
+				},
+				terms : {
+					required : true
+				}
+			},
+
+			// Messages for form validation
+			messages : {
+				login : {
+					required : 'Please enter your login'
+				},
+				email : {
+					required : 'Please enter your email address',
+					email : 'Please enter a VALID email address'
+				},
+				password : {
+					required : 'Please enter your password'
+				},
+				passwordConfirm : {
+					required : 'Please enter your password one more time',
+					equalTo : 'Please enter the same password as above'
+				},
+				firstname : {
+					required : 'Please select your first name'
+				},
+				lastname : {
+					required : 'Please select your last name'
+				},
+				gender : {
+					required : 'Please select your gender'
+				},
+				terms : {
+					required : 'You must agree with Terms and Conditions'
+				}
+			},
+
+			// Ajax form submition
+			submitHandler : function(form) {
+				$(form).ajaxSubmit({
+					success : function() {
+						$("#smart-form-register").addClass('submited');
+					}
+				});
+			},
+
+			// Do not change code below
+			errorPlacement : function(error, element) {
+				error.insertAfter(element.parent());
+			}
+		});
+
+	});
+</script>

@@ -1,0 +1,137 @@
+//smart-3
+$gray-light:#777;
+$gray-lightm:#ddd;
+
+//smart-0
+$yellow:#f78c40;
+$yellow-light:#FFDAB9;
+
+//smart-1
+$bule:#22262e;
+$blue-light:#4682B4;
+
+//smart-2
+$white:#f2f2f2;
+$white-light:#fff;
+
+$white:#fffefe;
+$black:#121212;
+@mixin border-radius($radius) {
+  -webkit-border-radius: $radius;
+     -moz-border-radius: $radius;
+      -ms-border-radius: $radius;
+          border-radius: $radius;
+}
+
+#role_manage label:hover{
+	// background-color:$gray-lightm;
+}
+.classify{
+	width:144px !important;
+	margin-top: 7px;
+	padding-left: 30px !important;
+	text-align: left !important;
+	// text-align: center !important;
+	// margin-left:16px;
+	padding-left:0;
+	padding-right:0;
+	// padding:3px 6px 3px 92px!important;
+	// padding-left: 56px;
+	// background-color: $gray-light;
+	background-color:$gray-lightm;
+	margin-left: -18px;
+	// text-align:left !important;
+}
+
+
+//全选
+.all-select {
+	display: block;
+	// margin-left: 17px;
+	padding-left: 26px;
+	// background-color:$gray-light;
+	background-color:$gray-lightm;
+	height:42px;
+	// width:130px;
+	line-height: 42px;
+	font-size: 16px;
+	padding: 0 12px;
+	color :#555;
+	input {
+		margin: 0 4px 0 17px;
+		}
+}
+.in {
+	//display: block;
+	// margin-left: 17px;
+	padding-left: 26px;
+	// background-color:$gray-light;
+	background-color:$gray-lightm;
+	height:30px;
+	// width:130px;
+	line-height: 30px;
+	font-size: 16px;
+	padding: 0px;
+	color :#555;
+	input {
+		margin: 0px 4px 0 17px;
+		}
+}
+
+
+label .all {
+	margin-right:6px;
+}
+.checkbox-inline {
+	margin-left:0;
+}
+.item {
+	padding-left:17px;
+	label{
+		// width: auto !important;
+	}
+} 
+.item-detail {
+	// margin-left: -30px!important;
+	label{
+		// margin-right:28px;
+		margin-left: 0 !important;
+		padding: 3px 6px 3px 26px !important;
+		width: 120px;
+	}
+}
+//选中颜色过渡效果
+.active{
+	transition:background-color .8;
+	-moz-transition: width 2s;	/* Firefox 4 */
+	-webkit-transition: width 2s;	/* Safari 和 Chrome */
+	-o-transition: width 2s;	/* Opera */
+}
+//黄色主题
+.smart-skin-0 .all-select .classify {
+	background-color:$yellow;
+}
+.smart-skin-0 #role_manage label:hover{
+	background-color:$yellow-light;
+}
+//蓝色主题
+.smart-skin-1 .all-select  .classify{
+	background-color:$yellow;
+}
+.smart-skin-1 #role_manage label:hover{
+	background-color:$yellow-light;
+}
+//乳白主题
+.smart-skin-2 .all-select  .classify{
+	background-color:$yellow;
+}
+.smart-skin-2 #role_manage label:hover{
+	background-color:$yellow-light;
+}
+//灰色主题
+.smart-skin-3 .all-select  .classify{
+	background-color: $gray-light;
+}
+.smart-skin-3	#role_manage label:hover{
+	background-color:$gray-lightm;
+}

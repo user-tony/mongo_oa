@@ -1,0 +1,13 @@
+zh-CN:
+  activerecord:
+    models:
+      "office/human/company": 公司
+    attributes:
+      "office/human/company":
+        name: 名称
+        description: 描述
+        parent_id: 上级
+        fixed_phone: 传真
+        children: 下级
+        departments: 部门
+        employees: 员工

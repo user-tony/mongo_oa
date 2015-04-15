@@ -1,0 +1,85 @@
+<div class="footer_bottom">
+	<div class="new-sitemap-logo"><div class="logo-map"></div></div>
+	<div class="container new-sitemap-cent clearfix">
+		<div class="sitmep-col clearfix">
+			<h2 class="title clearfix"><%= link_to "留学资讯", news_index_path,title:'留学资讯' %></h2>
+			<div class="foot-sec clearfix">
+				<% Read::Category.active.news_categories.each do |category| %>
+				<%= link_to category.title, list_news_index_path(category_id: category.id), class: 'title' %>
+				<% end %>
+			</div>
+		</div>
+		<div class="sitmep-col clearfix">
+			<h2 class="title clearfix"><%= link_to "留学指导", guides_path, title:'留学指导' %></h2>
+			<div class="foot-sec clearfix">
+				<% Read::Category.active.article_categories.each do |category| %>
+				<%= link_to category.title, list_guides_path(category_id: category.id), class: 'title' %>
+				<% end %>
+			</div>
+		</div>
+		<div class="sitmep-col clearfix">
+			<h2 class="title clearfix"><%= link_to "留学问答", questions_path, title:'留学问答'  %></h2>
+			<div class="foot-sec clearfix">
+				<% Read::Category.active_question.each do |cate| %>
+				<%= link_to cate.title, "/questions/list/#{cate.id}" %>
+				<% end %>
+			</div>
+		</div>
+		<div class="sitmep-col clearfix">
+			<h2 class="title clearfix"><%= link_to '凤凰教育专区' , phoenixes_path, title: '凤凰教育专区' %>&nbsp;&nbsp;<%= link_to '留学案例', cases_path, title:'留学案例' %></h2>
+			<h2 class="title clearfix"><%= link_to '中国中学生报专版' , newspapers_path, title: '中国中学生报专版' %></h2>
+			<h2 class="title clearfix"><%= link_to raw("免费留学规划<span></span>"), tutors_path, title:'免费留学规划'  %></h2>
+		</div>
+		<div class="sitmep-col clearfix">
+			<%= image_tag "qrcode.jpg" , class:'qrcode' %>
+		</div>
+		<div class="clearfix"></div>
+
+		<% if request.path == '/' %>
+		<div class="footer_flink">
+			<h6 class="title"><span>友情链接</span></h6>
+			<ul>
+				<li><a href="http://www.hkbea.com.cn/include/lxtsq.shtml?bookType=11&proName=留学通" target="_blank" title="东亚银行">东亚银行</a></li>
+				<li><a href="http://www.51liucheng.com/" target="_blank" title="出国留学网">出国留学网</a></li>
+				<li><a href="http://sw.51liucheng.com/" target="_blank" title="柳橙出国留学网">柳橙网</a></li>
+				<li><a href="http://www.jpss.jp/zh-cn/" target="_blank" title="日本留学">日本留学</a></li>
+				<li><a href="http://www.visa008.com/ " target="_blank" title="">快速移民</a></li>
+				<li><a href="http://www.i-liuxue.com/" target="_blank" title="爱留学网">爱留学网</a></li>
+				<li><a href="http://www.iyangcong.com" target="_blank" title="爱洋葱双语阅读">爱洋葱双语阅读</a></li>
+				<li><a href="http://liuxue.weilan.com.cn/" target="_blank" title="日本留学">日本留学</a></li>
+				<li><a href="http://www.ebjy.cn/" target="_blank" title="恩波考研网">恩波考研网</a></li>
+				<li><a href="http://www.myoneone.com/" target="_blank" title="易教育">易教育</a></li>
+				<li><a href="http://jinan.qd8.com.cn/liuxueyimin/" target="_blank" title="济南留学信息">济南留学信息</a></li>
+				<li><a href="http://boke.01teacher.com/" target="_blank" title="英语外教">英语外教</a></li>
+				<li><a href="http://www.xpbbb.com/" target="_blank" title="教育点评网">教育点评网</a></li>
+				<li><a href="http://www.gaozhong.cc/" target="_blank" title="高中学习方法">高中学习方法</a></li>
+				<li><a href="http://www.bris.net.cn/" target="_blank" title="布里斯托大学">布里斯托大学</a></li>
+				<li><a href="http://www.boost.org.cn/category/gmat" target="_blank" title="GMAT培训">GMAT培训</a></li>
+				<li><a href="http://www.boost.org.cn/category/toefl" target="_blank" title="托福培训">托福培训</a></li>
+				<li><a href="http://www.rdliuxue.com/" target="_blank" title="中国人民大学留学">中国人民大学留学</a></li>
+				<li><a href="http://www.lxpgw.com/" target="_blank" title="留学评估网">留学评估网</a></li>
+				<li><a href="http://www.xuefu5.com/" target="_blank" title="学富网">学富网</a></li>
+				<li><a href="http://www.gkk12.com/" target="_blank" title="高考信息网">高考信息网</a></li>
+				<li><a href="http://www.zkk12.com/" target="_blank" title="中考信息网">中考信息网</a></li>
+				<li><a href="http://www.luode.org/" target="_blank" title="罗德教育">罗德教育</a></li>
+			</ul>
+		</div>
+		<% end %>
+	</div>
+
+
+	<section class="footer-cont clearfix">
+		<ul>
+			<li><%= link_to "关于我们", about_path , target: '_blank' ,rel: 'nofollow' %></li>
+			<li><%= link_to "联系我们", contactus_path , target: '_blank' ,rel: 'nofollow'%></li>
+			<li><%= link_to "加入我们", jobs_path , target: '_blank' ,rel: 'nofollow' %></li>
+			<li><%= link_to "千帆渡大家庭", dajiating_path , target: '_blank' ,rel: 'nofollow' %></li>
+			<li><%= link_to "商务洽谈", copyright_path , target: '_blank' ,rel: 'nofollow' %></li>
+			<li><%= link_to "千帆渡大事记", dashiji_path , target: '_blank' ,rel: 'nofollow' %></li>
+			<li><%= link_to "隐私政策", privacy_path , target: '_blank' ,rel: 'nofollow' %></li>
+			<li><%= link_to "服务条款", term_of_service_path , target: '_blank' ,rel: 'nofollow' %></li>
+			<li>&copy; 千帆渡（北京）网络科技有限公司 &reg; 版权所有 all rights reserved 2013 京icp备 <a href="http://www.miibeian.gov.cn" target="_blank">14007436</a> 号</li>
+		</ul>
+	</section>
+</div>
+

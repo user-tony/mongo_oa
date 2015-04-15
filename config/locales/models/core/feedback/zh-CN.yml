@@ -1,0 +1,11 @@
+zh-CN:
+  activerecord:
+    models:
+      "core/feedback": 反馈
+    attributes:
+      "core/feedback":
+        name: 姓名
+        phone: 手机号
+        content: 内容
+        ip_address: IP
+        user_id: 用户

@@ -1,0 +1,27 @@
+zh-CN:
+  activerecord:
+    models:
+      "temp/news": 资讯
+    attributes:
+      "temp/news":
+        title: 标题
+        description: 摘要
+        category_id: 分类
+        mongodb_id: mongodb ID
+        result: 分词结果
+        data_type: 类型
+        finer_msg: 局部哈希摘要（计算重复的文章）
+        weight: 权重
+        content: 文章正文
+        url: 地址
+        author: 来源
+        original: 原文
+        summary: 摘要
+        keyword: 关键字
+        issue: 抓取时间
+        repeat_count: 热度
+        doc_id: 文章ID
+        scraw_time: 爬虫时间
+        version: 版本
+        pic: 图片
+        pic_desc: 图片描述

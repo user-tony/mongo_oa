@@ -1,0 +1,44 @@
+class Manage::SessionsController < Manage::ApplicationController
+
+	layout 'manage/sessions/application'
+	skip_before_filter :require_login
+	skip_before_filter :authorized?
+
+	def index
+		redirect_to '/'
+	end
+
+	def new
+		@user = User.new
+	end
+
+	def create
+		user = login(user_params[:email], user_params[:password], user_params[:remember_me])
+		if user
+			if Manage::Account.find(user.id).active
+				if Manage::Editor.where(id: user.id).first
+					redirect_to session[:redirect_back_uri] and return if session[:redirect_back_uri]
+					redirect_to manage_root_url, notice: '操作成功' and return
+				else
+					flash.now.notice = "抱歉,您没有后台权限"
+				end
+			else
+				flash.now.notice = "该用户已被锁定，请更新其它账号"
+			end
+		else
+			flash.now.notice = "用户名或密码错误！"
+		end
+		@user = User.new
+		render :new
+	end
+
+	def destroy
+		logout
+		redirect_to root_url, notice: "操作成功"
+	end
+
+	def user_params
+		params.require(:user).permit(:email, :password, :remember_me)
+	end
+
+end

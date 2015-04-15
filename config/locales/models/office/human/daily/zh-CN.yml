@@ -1,0 +1,17 @@
+zh-CN:
+  activerecord:
+    models:
+      "office/human/daily": 日报
+    attributes:
+      "office/human/daily":
+        name: 姓名
+        company: 公司
+        department_id: 部门
+        title: 标题
+        task: 当日任务
+        summary: 工作总结
+        plan: 计划
+        issue: 遇到问题
+        administrator_id: 上级领导
+        remark: 描述
+        path: 附件

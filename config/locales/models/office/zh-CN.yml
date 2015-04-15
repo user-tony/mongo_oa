@@ -1,0 +1,8 @@
+zh-CN:
+  activerecord:
+    models:
+      office: 办公
+      "office/human": 人事
+      "office/finance": 财务
+      "office/purchase": 采购
+      "office/todo": 待办事宜

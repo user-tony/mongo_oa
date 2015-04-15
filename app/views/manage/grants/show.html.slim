@@ -1,0 +1,48 @@
+- grant = @grant
+- @page_title = "#{grant.class.model_name.human} #{grant.id}"
+- show = !%w[new edit].include?(params[:action]) && grant.valid?
+= render 'manage/shared/prompt', record: grant
+.col-md-8.col-md-offset-2
+	h1
+		span style='float:right;font-size:12px;' = render 'actions', record: grant if show && grant.active?
+		| #{t(show ? :show : grant.new_record? ? :new : :edit)} #{grant.class.model_name.human}
+br.clear
+= form_for grant, url: grant, method: grant.new_record? ? :post : :put, html: {class: 'form-horizontal', role: 'form'} do |f|
+	- options_class = show ? { disabled: 'true'} : {}
+	.clearfix
+	- if show
+		.form-group
+			= f.label :id, { class: 'col-md-2 control-label' }
+			.col-md-8
+				= f.text_field :id, {class: 'form-control'}.merge(options_class)
+				
+	.form-group
+		= f.label :editor_id, { class: 'col-md-2 control-label' }
+		.col-md-8
+			= f.text_field :editor_id, {class: 'form-control'}.merge(options_class)
+			span.help-block
+				= f.error_message_on :editor_id
+				
+	.form-group
+		= f.label :role_id, { class: 'col-md-2 control-label' }
+		.col-md-8
+			= f.text_field :role_id, {class: 'form-control'}.merge(options_class)
+			span.help-block
+				= f.error_message_on :role_id
+	
+	- if show
+		.form-group
+			= f.label :created_at, { class: 'col-md-2 control-label' }
+			.col-md-8
+				= f.text_field :created_at, { class: 'form-control'}.merge(options_class)
+		.form-group
+			= f.label :updated_at, { class: 'col-md-2 control-label' }
+			.col-md-8
+				= f.text_field :updated_at, { class: 'form-control'}.merge(options_class)
+				
+	- unless show
+		fieldset
+			.form-group
+				.col-md-2
+				.col-md-8
+					= f.submit class:'btn btn-primary'

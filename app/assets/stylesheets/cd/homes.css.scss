@@ -1,0 +1,45 @@
+// Place all the styles related to the cd/homes controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.container .sec .cd-h-tutors .case-1{
+	width: 66px;
+	height: 26px;
+	background-position: -126px -60px;
+	margin-left: 30px;
+}
+.container .sec .cd-h-tutors .case-2{
+	width: 420px;
+	height: 26px;
+	background-position: -267px -60px;
+}
+
+.container .sec .cd-text-intor{
+	background-image: url(asset_path("cd-intro-text.png"));
+	background-repeat:  no-repeat;
+	display: inline-block;
+	width: 500px;
+	height: 26px;
+}
+
+.container .sec .cd-text-intor-1{
+	background-position: 0 -316px;
+}
+.container .sec .cd-text-intor-2{
+	background-position: 0 -345px;
+}
+.container .sec .cd-text-intor-3{
+	background-position: 0 -377px;
+}
+.container .sec .cd-text-intor-4{
+	background-position: 0 -408px;
+}
+.container .sec .cd-text-intor-5{
+	background-position: 0 -435px;
+}
+.container .sec .cd-text-intor-6{
+	background-position: 0 -471px;
+}
+.container .sec .cd-text-intor-7{
+	background-position: 0 -498px;
+}
+

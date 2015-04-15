@@ -1,0 +1,10 @@
+zh-CN:
+  activerecord:
+    models:
+      phoenix/category: 分类
+    attributes:
+      phoenix/category:
+        title: 标题
+        description: 描述
+        parent_id: 上级
+        user_id: 用户

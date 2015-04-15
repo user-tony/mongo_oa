@@ -1,0 +1,65 @@
+/! widget grid
+section#widget-grid
+	/! row
+	.row
+		/! NEW WIDGET START
+		article.col-xs-12.col-sm-12.col-md-12.col-lg-12
+			br.clear
+				= form_tag request.path, method: 'get', id: 'search_form' do
+					| &nbsp;|&nbsp;
+					= render 'manage/shared/search/array', field: 'id'
+					= render 'manage/shared/search/like', field: 'name'
+					= render 'manage/shared/search/range', field: 'created_at'
+					= render 'manage/shared/search/range', field: 'updated_at'
+					= render 'manage/shared/search/order', fields: %w[name]
+					= render 'manage/shared/search/page'
+					= submit_tag t(:search), name: nil, class: 'btn btn-primary'
+			/! Widget ID (each widget will need unique ID)
+			.jarviswidget.jarviswidget-color-darken data-widget-editbutton="false"
+				header
+					span.widget-icon
+						i.fa.fa-table
+					h2
+						= "#{model.model_name.human} #{t(:index)} (#{@accounts.total_count})"
+						- if can?(:create, Manage::Account)
+							span style="margin-left: 30px"
+								= link_to t('new'), new_manage_account_path, class: 'btn btn-xs btn-warning'
+				/! widget div
+				- if @accounts.blank?
+					p.alert.alert-info.no-margin = t(:no_data)
+				- else
+					div
+						/! widget edit box
+						.jarviswidget-editbox
+							/! This area used as dropdown edit box
+						/! end widget edit box
+						/! widget content
+						.widget-body.no-padding
+							table#dt_basic.table.table-striped.table-bordered.table-hover width="100%"
+								thead
+									- %i{ id pic name email birthday login_at created_at }.each do |field|
+										th
+											i.fa.fa-fw.fa-user.text-muted.hidden-md.hidden-sm.hidden-xs
+											= model.human_attribute_name(field)
+									th
+										i.fa.fa-fw.fa-user.text-muted.hidden-md.hidden-sm.hidden-xs
+										= t 'actions'
+								tbody
+									- @accounts.each do |account|
+										tr
+											td = link_to account.id, manage_account_path(account)
+											td = account.pic
+											td = account.name
+											td = account.tries(:user, :email)
+											td = account.birthday
+											td = account.login_at
+											td = datetime_tag account.created_at
+											td = render 'actions', record: account
+					/! end widget content
+				/! end widget div
+				.dt-toolbar-footer
+					.col-sm-6.col-xs-12.hidden-xs
+					.col-sm-6.col-xs-12
+						= render 'manage/shared/pagination', records: @accounts
+			/! end widget
+

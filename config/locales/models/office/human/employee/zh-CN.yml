@@ -1,0 +1,36 @@
+zh-CN:
+  activerecord:
+    models:
+      "office/human/employee": 员工
+    attributes:
+      "office/human/employee":
+        id: 关联账号
+        name: 姓名
+        identifier: 标识
+        name: 姓名
+        mobile_phone: 移动电话
+        fixed_phone: 固定电话
+        department_id: 部门
+        company_id: 公司
+        gender: 性别
+        number: 工号
+        status: 状态
+        seat_name: 座位
+        joined_on: 入职日期
+        formalized_on: 转正日期
+        resigned_on: 离职日期
+        position_name: 职位名称
+        city_name: 城市名称
+        probation_month: 试用月数
+        supervisor: 上级
+        administrations: 管理
+    enums:
+      "office/human/employee":
+        gender:
+          male: 男
+          female: 女
+        status:
+          formal: 正式
+          probationary: 试用
+          intern: 实习
+          resigned: 离职

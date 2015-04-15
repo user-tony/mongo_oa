@@ -1,0 +1,18 @@
+zh-CN:
+  activerecord:
+    models:
+      read/category: 分类
+    attributes:
+      read/category:
+        title: 标题
+        description: 描述
+        pattern: 类型
+        user_id: 用户
+        tag_list: 标签
+        city_id: 城市
+    enums:
+      read/category:
+        pattern:
+          news: 资讯
+          article: 文章
+          question: 问答

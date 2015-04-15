@@ -1,0 +1,3 @@
+= link_to t(:show), [:manage, record], class: 'btn btn-xs btn-default'
+= link_to t(:edit), [:edit, :manage, record], class: 'btn btn-xs btn-default' if can?(:update, record)
+= link_to t(:destroy), [ :manage, record ], method: :delete, data: { confirm: t(:confirm) }, class: 'btn btn-xs btn-default' if can?(:destroy, record)

@@ -1,0 +1,152 @@
+- employee = @employee
+- @page_title = "#{employee.class.model_name.human} #{employee.id} #{employee.name}"
+- show = !%w[new edit].include?(params[:action]) && employee.valid?
+= render 'manage/shared/prompt', record: employee
+.col-md-8.col-md-offset-2
+	h1
+		span style='float:right;font-size:12px;' = render 'actions', record: employee if show && employee.active?
+		| #{t(show ? :show : employee.new_record? ? :new : :edit)} #{employee.class.model_name.human}
+br.clear
+= form_for employee, url: [:manage, employee], method: employee.new_record? ? :post : :put, html: {class: 'form-horizontal', role: 'form'} do |f|
+	= f.hidden_field :identifier, { value: Time.now.to_i } if employee.identifier.blank?
+	- options_class = show ? { disabled: 'true'} : {}
+	.clearfix
+	- if employee.new_record?
+		.form-group
+			= f.label :id, { class: 'col-md-2 control-label' }
+			.col-md-8
+				- ids = Manage::Account.active.pluck(:id)&User.active.pluck(:id)-Office::Human::Employee.pluck(:id)
+				= f.select :id, User.where(id: ids).all.map{|u| [u.name, u.id]}, {}, {class: 'form-control'}.merge(options_class)
+				
+				span.help-block
+					= f.error_message_on :id
+
+	- if show
+		.form-group
+			= f.label :id, { class: 'col-md-2 control-label' }
+			.col-md-8
+				= f.text_field :id, { value: employee.tries(:user, :name) , class: 'form-control'}.merge(options_class)
+
+	.form-group
+		= f.label :name, { class: 'col-md-2 control-label' }
+		.col-md-8
+			= f.text_field :name, {class: 'form-control'}.merge(options_class)
+			span.help-block
+				= f.error_message_on :name
+
+	.form-group
+		= f.label :number, { class: 'col-md-2 control-label' }
+		.col-md-8
+			= f.text_field :number, {class: 'form-control'}.merge(options_class)
+			span.help-block
+				= f.error_message_on :number
+
+	- if show
+		.form-group
+			= f.label :identifier, { class: 'col-md-2 control-label' }
+			.col-md-8
+				= f.text_field :identifier, {class: 'form-control'}.merge(options_class)
+
+	.form-group
+		= f.label :status, { class: 'col-md-2 control-label' }
+		.col-md-8
+			= f.select :status, employee.class.const_get('STATUS').map { |status, _| { t("activerecord.enums.office/human/employee.status.#{status}") => status } }.inject(&:merge), { include_blank: true }, {class: 'form-control'}.merge(options_class)
+			span.help-block
+				= f.error_message_on :status
+
+	.form-group
+		= f.label :gender, { class: 'col-md-2 control-label' }
+		.col-md-8
+			= f.select :gender, %w{男 女}.zip(%w{男 女}),{}, {class: 'form-control'}.merge(options_class)
+			span.help-block
+				= f.error_message_on :gender
+
+	.form-group
+		= f.label :joined_on, { class: 'col-md-2 control-label' }
+		.col-md-8
+			.input-group
+				= f.text_field :joined_on, { "data-dateformat" => "dd/mm/yy", class: 'form-control datepicker hasDatepicker'}.merge(options_class)
+				span.input-group-addon
+					i.fa.fa-calendar
+			span.help-block
+				= f.error_message_on :joined_on
+
+	- if show
+		.form-group
+			= f.label :resigned_on, { class: 'col-md-2 control-label' }
+			.col-md-8
+				.input-group
+					= f.text_field :resigned_on, { "data-dateformat" => "dd/mm/yy", class: 'form-control datepicker hasDatepicker'}.merge(options_class)
+					span.input-group-addon
+						i.fa.fa-calendar
+				span.help-block
+					= f.error_message_on :resigned_on
+
+	.form-group
+		= f.label :probation_month, { class: 'col-md-2 control-label' }
+		.col-md-8
+			.input-group
+				= f.text_field :probation_month, { "data-dateformat" => "dd/mm/yy", class: 'form-control datepicker hasDatepicker'}.merge(options_class)
+				span.input-group-addon
+					i.fa.fa-calendar
+			span.help-block
+				= f.error_message_on :probation_month
+
+	.form-group
+		= f.label :seat_name, { class: 'col-md-2 control-label' }
+		.col-md-8
+			= f.text_field :seat_name, {class: 'form-control'}.merge(options_class)
+			span.help-block
+				= f.error_message_on :seat_name
+
+	.form-group
+		= f.label :fixed_phone, { class: 'col-md-2 control-label' }
+		.col-md-8
+			= f.text_field :fixed_phone, {class: 'form-control'}.merge(options_class)
+			span.help-block
+				= f.error_message_on :fixed_phone
+
+	.form-group
+		= f.label :mobile_phone, { class: 'col-md-2 control-label' }
+		.col-md-8
+			= f.text_field :mobile_phone, {class: 'form-control'}.merge(options_class)
+			span.help-block
+				= f.error_message_on :mobile_phone
+
+	.form-group
+		= f.label :city_name, { class: 'col-md-2 control-label' }
+		.col-md-8
+			= f.text_field :city_name, {class: 'form-control'}.merge(options_class)
+			span.help-block
+				= f.error_message_on :city_name
+
+	.form-group
+		= f.label :company_id, { class: 'col-md-2 control-label' }
+		.col-md-8
+			= f.select :company_id, Office::Human::Company.all.map{|e| [e.name,e.id]},{ include_blank: true }, {class: 'form-control'}.merge(options_class)
+			span.help-block
+				= f.error_message_on :company_id
+
+	.form-group
+		= f.label :department_id, { class: 'col-md-2 control-label' }
+		.col-md-8
+			= f.select :department_id, Office::Human::Department.all.map{|e| [e.name,e.id]},{ include_blank: true }, {class: 'form-control'}.merge(options_class)
+			span.help-block
+				= f.error_message_on :department_id
+
+	- if show
+		.form-group
+			= f.label :created_at, { class: 'col-md-2 control-label' }
+			.col-md-8
+				= f.text_field :created_at, { class: 'form-control'}.merge(options_class)
+		.form-group
+			= f.label :updated_at, { class: 'col-md-2 control-label' }
+			.col-md-8
+				= f.text_field :updated_at, { class: 'form-control'}.merge(options_class)
+
+	- unless show
+		fieldset
+			.form-group
+				.col-md-2
+				.col-md-8
+					= f.submit class:'btn btn-primary'

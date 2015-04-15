@@ -1,0 +1,7 @@
+zh-CN:
+  activerecord:
+    models:
+      phoenix/image: 图片
+    attributes:
+      phoenix/image:
+        pic: 路径

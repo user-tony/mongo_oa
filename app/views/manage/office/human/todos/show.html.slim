@@ -1,0 +1,60 @@
+- @todo_title = "#{@todo.class.model_name.human} #{@todo.id} #{@todo.title}"
+- show = !%w[new edit].include?(params[:action]) && @todo.valid?
+= render 'manage/shared/prompt', record: @todo
+.col-md-8.col-md-offset-2
+    h1
+        span style='float:right;font-size:12px;' = render 'actions', record: @todo if show && @todo.active?
+        | #{t(show ? :show : @todo.new_record? ? :new : :edit)} #{@todo.class.model_name.human}
+br.clear
+= form_for @todo, url: [:manage, @todo], method: @todo.new_record? ? :post : :put, html: {class: 'form-horizontal', role: 'form'} do |f|
+    - options_class = show ? { disabled: 'true'} : {}
+    .clearfix
+    - if show
+        .form-group
+            = f.label :id, { class: 'col-md-2 control-label' }
+            .col-md-8
+                = f.text_field :id, {class: 'form-control'}.merge(options_class)
+
+    .form-group
+        = f.label :title, { class: 'col-md-2 control-label' }
+        .col-md-8
+            = f.text_field :title, {class: 'form-control'}.merge(options_class)
+            span.help-block
+                = f.error_message_on :title
+    .form-group
+        = f.label :genre, { class: 'col-md-2 control-label' }
+        .col-md-8
+            = f.select :genre, Office::Human::Todo::GENRE, {include_blank: true}, { class: 'form-control'}.merge(options_class)
+            span.help-block
+                = f.error_message_on :genre
+
+    .form-group
+        = f.label :description, { class: 'col-md-2 control-label' }
+        .col-md-8
+            = f.text_area :description, {class: 'form-control'}.merge(options_class)
+            span.help-block
+                = f.error_message_on :description
+
+    .form-group
+        = f.label :position, { class: 'col-md-2 control-label' }
+        .col-md-8
+            = f.text_field :position, { class: 'form-control'}.merge(options_class)
+            span.help-block
+                = f.error_message_on :position
+
+    - if show
+        .form-group
+            = f.label :created_at, { class: 'col-md-2 control-label' }
+            .col-md-8
+                = f.text_field :created_at, { class: 'form-control'}.merge(options_class)
+        .form-group
+            = f.label :updated_at, { class: 'col-md-2 control-label' }
+            .col-md-8
+                = f.text_field :updated_at, { class: 'form-control'}.merge(options_class)
+
+    - unless show
+        fieldset
+            .form-group
+                .col-md-2
+                .col-md-8
+                    = f.submit class:'btn btn-primary'
