@@ -1,16 +1,5 @@
 <%
 	nav_attributes =[
-		{
-			class: 'menu-item-parent', icon_class: 'fa fa-lg fa-fw fa-gavel', title: '网站管理', url: '#',
-			submodules: [
-				{
-					class: 'menu-item-parent', icon_class: 'fa fa-lg fa-fw fa-desktop', title: '前端', url: '#',
-					submodules: [
-						{ title: '用户', url: manage_users_path, regexp: Regexp.new('user'), klass: Manage::Account },
-					]
-				},
-			],
-		},
 		{ class: 'menu-item-parent', icon_class: 'fa fa-lg fa-fw fa-gavel', title: '工作日历', url: manage_office_human_events_path,
 			regexp: Regexp.new('office\/human\/events'), klass: Office::Human::Event,
 			submodules: []

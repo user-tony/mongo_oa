@@ -1,11 +1,14 @@
 class Manage::Account < ActiveRecord::Base
-	
+	authenticates_with_sorcery!
 	has_one :user, :foreign_key => 'id', class_name: 'User'
 	has_one :employee, :foreign_key => 'id', class_name: 'Office::Human::Employee'
 	cattr_accessor :manage_fields do %w{name login_at birthday gender}; end
 	belongs_to :editor, :foreign_key => 'id', class_name: 'Manage::Editor'
 	scope :active, -> { where active: true }
-
+	
+	cattr_accessor :manage_fields
+	self.manage_fields = %w[name gender brithday pic tag_list password password_confirmation]
+	
 	delegate :administrations, to: :employee
 	
 	def self.acquire(id)

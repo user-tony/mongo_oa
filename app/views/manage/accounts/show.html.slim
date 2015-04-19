@@ -24,11 +24,11 @@ br.clear
 				= f.error_message_on :name
 			
 	.form-group
-		= f.label :gender, { class: 'col-md-2 control-label' }
+		= f.label :password, { class: 'col-md-2 control-label' }
 		.col-md-8
-			= f.select :gender, %w{男 女}.zip(%w{男 女}),{}, { class: 'form-control'}.merge(options_class)
+			= f.text_field :password, {class: 'form-control'}.merge(options_class)
 			span.help-block
-				= f.error_message_on :gender
+				= f.error_message_on :password
 				
 	.form-group
 		= f.label :birthday, { class: 'col-md-2 control-label' }

@@ -9,11 +9,11 @@ class Manage::SessionsController < Manage::ApplicationController
 	end
 
 	def new
-		@user = User.new
+		@user = Manage::Account.new
 	end
 
 	def create
-		user = login(user_params[:email], user_params[:password], user_params[:remember_me])
+		user = login(user_params[:name], user_params[:password], user_params[:remember_me])
 		if user
 			if Manage::Account.find(user.id).active
 				if Manage::Editor.where(id: user.id).first
@@ -28,7 +28,7 @@ class Manage::SessionsController < Manage::ApplicationController
 		else
 			flash.now.notice = "用户名或密码错误！"
 		end
-		@user = User.new
+		@user = Manage::Account.new
 		render :new
 	end
 
@@ -38,7 +38,7 @@ class Manage::SessionsController < Manage::ApplicationController
 	end
 
 	def user_params
-		params.require(:user).permit(:email, :password, :remember_me)
+		params.require(:manage_account).permit(:name, :password, :remember_me)
 	end
 
 end

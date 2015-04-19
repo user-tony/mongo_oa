@@ -4,7 +4,9 @@ zh-CN:
       "manage/account": 用户
     attributes:
       "manage/account":
-        name: 名称
+        name: 用户名
+        password: 密码
+        email: 邮箱
         birthday: 生日
         login_at: 登陆时间
         gender: 性别

@@ -5,13 +5,13 @@ class User::SessionsController < User::ApplicationController
 	def index
 		respond_to do |format|
 			format.html { redirect_to params[:redirect] || root_path }
-			@data = { 
-				'session_key' => (session.inspect;request.session_options[:id]), 
-				'secret' => (session[:secret] || (session[:secret] = form_authenticity_token) ), 
+			@data = {
+				'session_key' => (session.inspect;request.session_options[:id]),
+				'secret' => (session[:secret] || (session[:secret] = form_authenticity_token) ),
 				'current_time' => Time.now.to_s(:db),
 				'current_user' => (@current_user && @current_user.id),
 				'is_cookie_supported' => !!cookies[request.session_options[:key]],
-			} 
+			}
 			format.xml { render xml: @data }
 			format.json { render json: @data }
 		end
@@ -26,7 +26,7 @@ class User::SessionsController < User::ApplicationController
 	end
 
 	def create
-		user = login(user_params[:email], user_params[:password], user_params[:remember_me])
+		user = login(user_params[:name], user_params[:password], user_params[:remember_me])
 		if user
 			if user.active
 				redirect_back_or_to root_url, :notice => "操作成功"
@@ -47,6 +47,6 @@ class User::SessionsController < User::ApplicationController
 	end
 
 	def user_params
-		params.require(:user).permit(:email, :password, :remember_me)
+		params.require(:user).permit(:name :password, :remember_me)
 	end
 end

@@ -4,10 +4,10 @@ Rails.application.routes.draw do
   get 'homes/index'
   end
 
-	root 'cd/homes#index'
+	root 'manage/homes#index'
 	get 'login' => 'user/sessions#new', as: :login
 	get 'logout' => 'user/registrations#destroy', as: :logout
- 
+
 	resources :homes
 
 	namespace :user do
@@ -17,7 +17,7 @@ Rails.application.routes.draw do
 			get :destroy, on: :member
 		end
 	end
-	
+
 	namespace :manage do
 		root to: 'homes#index'
 
@@ -43,6 +43,6 @@ Rails.application.routes.draw do
 			end
 		end
 	end
-	
-	
+
+
 end
