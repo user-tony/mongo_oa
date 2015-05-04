@@ -20,6 +20,7 @@ class Manage::Role < ActiveRecord::Base
 		manage_grant
 		manage_editor
 		manage_role
+		post
 	}
 
 	EXCLUDE_ATTR = %w{id name user_id description destroyed_at updater_id active lock_version created_at updated_at}

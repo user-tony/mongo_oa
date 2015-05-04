@@ -21,7 +21,7 @@ Rails.application.routes.draw do
 	namespace :manage do
 		root to: 'homes#index'
 
-		resources :sessions, :accounts, :editors, :roles, :grants, :users
+		resources :sessions, :accounts, :editors, :roles, :grants, :users, :posts
 
 		resources :users do
 			get :password, on: :member

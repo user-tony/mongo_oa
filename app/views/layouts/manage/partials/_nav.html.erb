@@ -1,5 +1,10 @@
 <%
 	nav_attributes =[
+		{ class: 'menu-item-parent', icon_class: 'fa fa-lg fa-fw fa-desktop', title: '网站管理', url: '#',
+			submodules: [ 
+					{ title: '公告', url: manage_posts_path, regexp: Regexp.new('post'), klass: Post } 
+			]
+    },
 		{ class: 'menu-item-parent', icon_class: 'fa fa-lg fa-fw fa-gavel', title: '工作日历', url: manage_office_human_events_path,
 			regexp: Regexp.new('office\/human\/events'), klass: Office::Human::Event,
 			submodules: []
@@ -22,6 +27,7 @@
 						{ title: '角色', url: manage_roles_path, regexp: Regexp.new('manage\/roles'), klass: Manage::Role, },
 						{ title: '编辑', url: manage_editors_path, regexp: Regexp.new('editors'), klass: Manage::Editor, },
 						{ title: '授予', url: manage_grants_path, regexp: Regexp.new('manage\/grants'), klass: Manage::Grant, },
+						{ title: '公告', url: manage_posts_path, regexp: Regexp.new('post'), klass: Post } 
 					]
 				},
 			],
