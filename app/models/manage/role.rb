@@ -16,6 +16,7 @@ class Manage::Role < ActiveRecord::Base
 		office_human_company
 		office_human_department
 		office_human_employee
+		office_human_daily
 		manage_account
 		manage_grant
 		manage_editor

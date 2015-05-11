@@ -9,7 +9,7 @@ class Manage::Account < ActiveRecord::Base
 	cattr_accessor :manage_fields
 	self.manage_fields = %w[name gender brithday pic tag_list password password_confirmation]
 	
-	delegate :administrations, to: :employee
+	delegate :administrations, to: :employee, allow_nil: true
 	
 	def self.acquire(id)
 		record = self.find_by_id(id)

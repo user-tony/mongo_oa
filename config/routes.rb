@@ -1,9 +1,5 @@
 Rails.application.routes.draw do
 
-  namespace :manage do
-  get 'homes/index'
-  end
-
 	root 'manage/homes#index'
 	get 'login' => 'user/sessions#new', as: :login
 	get 'logout' => 'user/registrations#destroy', as: :logout
@@ -30,7 +26,7 @@ Rails.application.routes.draw do
 
 		namespace :office do
 			namespace :human do
-				resources :companies, :departments, :employees, :events, :todos do
+				resources :companies, :departments, :employees, :events, :todos, :dailies do
 					put :publish, on: :member
 					put :unpublish, on: :member
 				end

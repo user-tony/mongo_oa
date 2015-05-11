@@ -28,6 +28,7 @@ class Manage::SessionsController < Manage::ApplicationController
 		else
 			flash.now.notice = "用户名或密码错误！"
 		end
+		# p flash.now.notice
 		@user = Manage::Account.new
 		render :new
 	end
