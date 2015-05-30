@@ -1,7 +1,0 @@
-zh-CN:
-  activerecord:
-    models:
-      phoenix/detail: 详情
-    attributes:
-      phoenix/detail:
-        content: 内容

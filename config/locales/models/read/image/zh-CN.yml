@@ -1,8 +1,0 @@
-zh-CN:
-  activerecord:
-    models:
-      "read/image": 图片
-    attributes:
-      "read/image":
-        description: 摘要
-        image: 图片

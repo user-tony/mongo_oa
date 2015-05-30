@@ -1,9 +1,0 @@
-zh-CN:
-  activerecord:
-    models:
-      "read/detail": 内容
-    attributes:
-      "read/detail":
-        news_id: 关联文章
-        category_id: 分类
-        content: 内容

@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
 
 	root 'manage/homes#index'
-	get 'login' => 'user/sessions#new', as: :login
-	get 'logout' => 'user/registrations#destroy', as: :logout
+	get 'login' => 'manage/sessions#new', as: :login
+	get 'logout' => 'manage/registrations#destroy', as: :logout
 
 	resources :homes
 

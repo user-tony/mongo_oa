@@ -13,15 +13,4 @@ $(document.body).ready(function(){
 		});
 		setTimeout($.proxy(function(){ $(this).find("input[type=text],select,textarea").each(function(){ $(this).attr('disabled', false); }); }, this), 100);
 	});
-
-
-	$('.hasDatepicker').datetimepicker({
-    lang:'ch',
-    timepicker: false,
-    format:'Y-m-d',
-    step: 10
-  });
-	$('.hasDatepicker').datepicker({ altFormat: 'yy-mm-dd' });
-
-	// timepicker('option', {dateFormat: 'yy-mm-dd'});
 });

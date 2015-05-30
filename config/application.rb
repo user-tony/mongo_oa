@@ -4,7 +4,7 @@ require 'rails/all'
  
 Bundler.require(*Rails.groups)
 
-module Qianfandu
+module MangoOa
 	class Application < Rails::Application
 		config.time_zone = 'Beijing'
 		config.active_record.default_timezone = :local

@@ -1,9 +1,0 @@
-zh-CN:
-  activerecord:
-    models:
-      "office/human/todo": 待办事宜
-    attributes:
-      "office/human/todo":
-        title: 标题
-        genre: 类型
-        description: 描述

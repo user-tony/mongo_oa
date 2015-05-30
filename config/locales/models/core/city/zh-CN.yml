@@ -1,7 +1,0 @@
-zh-CN:
-  activerecord:
-    models:
-      "core/city": 城市
-    attributes:
-      "core/city":
-        name: 名称
