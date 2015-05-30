@@ -1,7 +1,7 @@
 class Manage::ApplicationController < ApplicationController
 
 	layout 'manage/application'
-	before_filter :require_login, :city
+	before_filter :require_login
 	before_filter :authorized?
 	respond_to :html, :js, :json, :xls, :csv, :tsv
 
@@ -12,11 +12,6 @@ class Manage::ApplicationController < ApplicationController
 	def not_authenticated
 		session[:redirect_back_uri] = request.url
 	  redirect_to new_manage_session_path, :alert => "First login to access this page."
-	end
-
-	def city
-		#id = @current_user.tries(:account, :employee, :company, :id).to_i == 3 ? 2 : 1
-		#@@city ||= ::Core::City.find id
 	end
 
 	private

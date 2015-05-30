@@ -51,7 +51,3 @@
 #= require js/plugin/markdown/bootstrap-markdown.min
 #= require manage/app
 #= require manage/roles
-# require manage/facebox
-#= require manage/file
-#= require manage/office/human/events
-#= require manage/office/human/todos
