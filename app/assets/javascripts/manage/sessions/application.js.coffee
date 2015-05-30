@@ -1,11 +1,7 @@
 #= require jquery
 #= require jquery_ujs
 #= require js/bootstrap
-#= require js/plugin/pace/pace.min
-#= require js/plugin/jquery-touch/jquery.ui.touch-punch.min
 #= require js/bootstrap/bootstrap.min
-#= require js/plugin/jquery-validate/jquery.validate.min
-#= require js/plugin/masked-input/jquery.maskedinput.min
 #= require js/libs/jquery-2.0.2.min
 #= require js/libs/jquery-ui-1.10.3.min
 #= require js/app.config

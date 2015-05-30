@@ -18,9 +18,9 @@ br.clear
 				= f.text_field :name, options_class
 				span.help-block
 					= f.error_message_on :name
-	
 
-					
+
+
 	fieldset
 		#role_manage.form-group
 			/ label.all-select
@@ -56,7 +56,7 @@ br.clear
 					label.col-md-1.control-label.classify
 						= check_box_tag '', '', false, {class: 'all', 'data-name' => "#{field}_num" }
 						= t(field.to_s)
-					.col-md-11
+					.col-md-10
 						= f.hidden_field field, {id: "#{field}_num"}
 						.checkbox-inline.item-detail
 							- role.class.const_get('FUNCTIONS').each do |num, action|
@@ -67,18 +67,18 @@ br.clear
 	fieldset
 		.form-group
 			= f.label :description, { class: 'col-md-1 control-label' }
-			.col-md-11
+			.col-md-11 style="width: 100px%"
 				= f.text_area :description, options_class
 				span.help-block
 					= f.error_message_on :description
 	- if show
 		.form-group
 			= f.label :created_at, { class: 'col-md-1 control-label' }
-			.col-md-11
+			.col-md-12
 				= f.text_field :created_at, options_class
 		.form-group
 			= f.label :updated_at, { class: 'col-md-1 control-label' }
-			.col-md-11
+			.col-md-12
 				= f.text_field :updated_at, options_class
 	- unless show
 		fieldset
@@ -86,4 +86,3 @@ br.clear
 				.col-md-1
 				.col-md-11
 					= f.submit class:'btn btn-primary', name: ''
-

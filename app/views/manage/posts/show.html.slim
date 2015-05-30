@@ -1,5 +1,5 @@
- post = @post
-- @page_title = "#{post.class.model_name.human} #{post.id} #{post.name}"
+- post = @post
+- @page_title = "#{post.class.model_name.human} #{post.id} #{post.title}"
 - show = !%w[new edit].include?(params[:action]) && post.valid?
 = render 'manage/shared/prompt', record: post
 .col-md-8.col-md-offset-2
@@ -7,51 +7,24 @@
     span style='float:right;font-size:12px;' = render 'actions', record: post if show && post.active?
     | #{t(show ? :show : post.new_record? ? :new : :edit)} #{post.class.model_name.human}
 br.clear
-= form_for post, url: post, method: post.new_record? ? :post : :put, html: {class: 'form-horizontal', role: 'form'} do |f|
+= form_for post, url: [:manage , post], method: post.new_record? ? :post : :put, html: {class: 'form-horizontal', role: 'form'} do |f|
   - options_class = show ? { disabled: 'true'} : {}
   .clearfix
-  .form-group
-    = f.label :id, { class: 'col-md-2 control-label' }
-    .col-md-8
-      = f.text_field :id, {class: 'form-control'}.merge(options_class)
-    span.help-block
-      = f.error_message_on :name
-  .form-group
-    = f.label :name, { class: 'col-md-2 control-label' }
-    .col-md-8
-      = f.text_field :name, {class: 'form-control'}.merge(options_class)
-      span.help-block
-        = f.error_message_on :name
-      
-  .form-group
-    = f.label :role_id, { class: 'col-md-2 control-label' }
-    .col-md-8
-      = f.text_field :role_id, { class: 'form-control'}.merge(options_class)
-      span.help-block
-        = f.error_message_on :role_id
 
   .form-group
-    = f.label :grants, '授予', { class: 'col-md-2 control-label' }
+    = f.label :title, { class: 'col-md-2 control-label' }
     .col-md-8
-      - (@post.grants.sort_by { |grant| grant.id || 99999999 } + (show ? [] : 1..10).map{ @post.grants.new(:active => false) }).each do |grant|
-        = f.fields_for :grants, grant do |sf|
-          - unless show
-            = sf.check_box :active, :onclick => "$(this).next().slideToggle('fast').find('input').prop('disabled', !$(this).prop('checked'));"
-          div(style="#{'display:none;' unless grant.active?}")
-            .form-group
-              = sf.label :role_id, { class: 'col-md-2 control-label' }
-                = sf.collection_select :role_id, Manage::Role.active, :id, :name, { :include_blank => '' }
-                span.help-block
-                  = sf.error_message_on :role_id
-            - unless grant.new_record?
-              .form-group
-                = sf.label :created_at, { class: 'col-md-2 control-label' }
-                .col-md-6
-                  = grant.created_at && grant.created_at.to_s(:db)
-              .form-group
-                = sf.label :updated_at, { class: 'col-md-2 control-label' }
-                .col-md-6
-                  = grant.updated_at && grant.updated_at.to_s(:db)
+      = f.text_field :title, {class: 'form-control'}.merge(options_class)
+      span.help-block
+        = f.error_message_on :title
+				
+  .form-group
+    = f.label :content, { class: 'col-md-2 control-label' }
+    .col-md-8
+      = f.text_area :content, {class: 'form-control'}.merge(options_class)
+      span.help-block
+        = f.error_message_on :content
+	
   - if show
     .form-group
       = f.label :created_at, { class: 'col-md-2 control-label' }

@@ -47,11 +47,10 @@ section#widget-grid
 								tbody
 									- @posts.each do |post|
 										tr
-											td = link_to user.id, manage_post_path(post) 
+											td = link_to post.id, manage_post_path(post) 
 											td = post.title
 											td = post.content
 											td = datetime_tag post.published_at
-											td = post.login_at
 											td = datetime_tag post.created_at
 											td = render 'actions', record: post
 					/! end widget content
