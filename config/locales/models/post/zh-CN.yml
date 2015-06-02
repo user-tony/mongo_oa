@@ -1,0 +1,9 @@
+zh-CN:
+  activerecord:
+    models:
+      post: 公告
+    attributes:
+      post:
+        title: 标题
+        content: 内容
+        published_at: 发布时间

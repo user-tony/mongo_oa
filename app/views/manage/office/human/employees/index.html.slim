@@ -16,8 +16,6 @@ section#widget-grid
 					= render 'manage/shared/search/range', field: 'joined_on'
 					= render 'manage/shared/search/range', field: 'formalized_on'
 					= render 'manage/shared/search/range', field: 'resigned_on'
-					= render 'manage/shared/search/range', field: 'created_at'
-					= render 'manage/shared/search/range', field: 'updated_at'
 					= render 'manage/shared/search/order', fields: %w[name]
 					= render 'manage/shared/search/page'
 					= submit_tag t(:search), name: nil, class: 'btn btn-primary'

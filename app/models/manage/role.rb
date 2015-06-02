@@ -12,7 +12,6 @@ class Manage::Role < ActiveRecord::Base
 	scope :active, -> { where active: true }
 
 	RESOURCES = %w{
-		user
 		office_human_company
 		office_human_department
 		office_human_employee
@@ -24,7 +23,7 @@ class Manage::Role < ActiveRecord::Base
 		post
 	}
 
-	EXCLUDE_ATTR = %w{id name user_id description destroyed_at updater_id active lock_version created_at updated_at}
+	EXCLUDE_ATTR = %w{id name user_id description destroyed_at updater_id user active lock_version created_at updated_at}
 
 	# index 1
 	# show 2

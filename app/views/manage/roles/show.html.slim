@@ -51,7 +51,7 @@ br.clear
 				label style="width: 45px"
 				= check_box_tag '', '', false, {class: 'in-control7' }
 				| 管理
-			- role.attributes.slice!(*%w{id name user_id description destroyed_at updater_id active lock_version created_at updated_at}).each do |field, ids|
+			- role.attributes.slice!(*%w{id name user_id user description destroyed_at updater_id active lock_version created_at updated_at}).each do |field, ids|
 				.item.clearfix
 					label.col-md-1.control-label.classify
 						= check_box_tag '', '', false, {class: 'all', 'data-name' => "#{field}_num" }

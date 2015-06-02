@@ -4,31 +4,11 @@ zh-CN:
   manage_grant: 授予
   manage_role: 角色
   manage_editor: 编辑
-  read_category: 分类
-  read_news: 资讯
-  read_tag: 标签
-  read_article: 文章
-  read_question: 问答
-  read_case: 案例
-  read_newspaper: 中学生报
-  temp_news: 临时资讯
-  core_student: 留学生
-  core_feedback: 反馈
   office_human_company: 公司
   office_human_department: 部门
   office_human_employee: 人员
-  office_human_todo: 待办事项
   office_human_daily: 日报
-  core_picture: 日期
-  phoenix_category: 凤凰分类
-  phoenix_article: 凤凰文章
-  search_engine: 采集引擎
-  search_site: 采集网站
-  search_link: 采集链接
-  core_city: 城市
-  core_country: 国家
-  core_ip: IP
-  cd_category: 成都分类
-  cd_event: 成都日历
-  cd_article: 成都指导
-  cd_news: 成都资讯
+  post: 公告
+  
+  
+
