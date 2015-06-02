@@ -33,22 +33,22 @@ br.clear
 				label style="width: 70px"
 				= check_box_tag '', '', false, {class: 'in-control1' }
 				| 列表
-				label style="width: 53px"
+				label style="width: 45px"
 				= check_box_tag '', '', false, {class: 'in-control2' }
 				| 显示
-				label style="width: 53px"
+				label style="width: 45px"
 				= check_box_tag '', '', false, {class: 'in-control3' }
 				| 创建
-				label style="width: 53px"
+				label style="width: 45px"
 				= check_box_tag '', '', false, {class: 'in-control4' }
 				| 更新
-				label style="width: 53px"
+				label style="width: 45px"
 				= check_box_tag '', '', false, {class: 'in-control5' }
 				| 删除
-				label style="width: 53px"
+				label style="width: 45px"
 				= check_box_tag '', '', false, {class: 'in-control6' }
 				| 发布
-				label style="width: 53px"
+				label style="width: 45px"
 				= check_box_tag '', '', false, {class: 'in-control7' }
 				| 管理
 			- role.attributes.slice!(*%w{id name user_id description destroyed_at updater_id active lock_version created_at updated_at}).each do |field, ids|
@@ -60,7 +60,7 @@ br.clear
 						= f.hidden_field field, {id: "#{field}_num"}
 						.checkbox-inline.item-detail
 							- role.class.const_get('FUNCTIONS').each do |num, action|
-								label.checkbox-inline style="width: 120px"
+								label.checkbox-inline style="width: 110px"
 									= check_box_tag field, num, role.get_manage_attrs(ids).include?(num), disabled: show, class: "action_role #{field}", id: '', action: field, style: 'color:silver', name: "#{field}_num"
 									= t(".#{action}".to_sym)
 									= t(field)
