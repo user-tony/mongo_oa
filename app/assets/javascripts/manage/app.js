@@ -1,5 +1,7 @@
 
 
+// 搜索表单脚本
+
 $(document.body).ready(function(){
 	$('#search_form').submit(function(){
 		$(this).find("input[name$='[like]']").each(function(){

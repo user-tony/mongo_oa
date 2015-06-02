@@ -35,6 +35,7 @@ $link-hover-color:$orange;
 $white:#fffefe;
 $black:#121212;
 
+/* 全局样式 */
 body{background:$white;}
 .status_button {
 	display: inline-block;
@@ -65,6 +66,7 @@ body{background:$white;}
 	}
 }
 
+// 搜索框样式
 #search_form{
 	input[type="text"]{min-width:20px;border:1px solid #ccc;margin:0 3px;padding:1px 3px;width: 10px;
 										transition: width 1s;
@@ -116,7 +118,7 @@ h1 .btn{margin-left:5px;}
 }
 
 
-// Pagination
+// Pagination 后端分页样式
 .pagination {
 	display:block;
 	padding-left: 0;
@@ -134,27 +136,3 @@ h1 .btn{margin-left:5px;}
 	.page.current,.page.gap{padding: 6px 12px;}
 	.page.current{background:$gray-lightm;color:$primary;}
 }
-
-/*信息提示框*/
-.qfd-alert{position:fixed;width:40%;top:30%;left:25%;z-index:999999999999;
-	-webkit-animation: fadeOut 5s linear forwards;
-	-moz-animation: fadeOut 5s linear forwards;
-	-o-animation: fadeOut 5s linear forwards;
-	-ms-animation: fadeOut 5s linear forwards;
-	animation: fadeOut 5s linear forwards;
-}
-.qfd-alert-image,.qfd-alert-body{display:table-cell;vertical-align:middle;}
-.qfd-alert-image{padding-right:24px;}
-.qfd-alert-body{width:100%;}
-
-.qfd-note{overflow:hidden;color:white;background-color:#9b59b6;}
-.qfd-note-secondary{background-color:#34495e;}
-.qfd-note-success{background-color:#27ae60;}
-.qfd-note-warning{background-color:#f39c12;}
-.qfd-note-error{background-color:#e74c3c;}
-.qfd-note-info{background-color:#3498db;}
-.qfd-note-icon,.qfd-note-text{padding:12px 24px;}
-.qfd-note-icon{min-width:80px;text-align:center;font-size:32px;background-color:rgba(0, 0, 0, 0.25);}
-.qfd-note-text{padding-right:72px;font-size:18px;}
-.qfd-note-close{position:absolute;top:18px;right:24px;font-size:24px;color:white;}
-/*信息提示框*/
