@@ -2,3 +2,4 @@
 = link_to t('copy'), new_manage_post_path(id: record.id), class: 'btn btn-xs btn-default' if can?(:create, record)
 = link_to t('edit'), [:edit, :manage, record], class: 'btn btn-xs btn-default' if can?(:update, record)
 = link_to t('destroy'), [:manage, record], method: 'delete', data: { confirm: t('confirm') }, class: 'btn btn-xs btn-default' if can?(:destroy, record)
+<!--链接到增删改查页面-->

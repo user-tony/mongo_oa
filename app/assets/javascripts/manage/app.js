@@ -4,7 +4,7 @@ $(document.body).ready(function(){
 	$('#search_form').submit(function(){
 		$(this).find("input[name$='[like]']").each(function(){
 			value = $.trim($(this).val());
-			console.log(value)
+			console.log(value) //在浏览器控制台输出日志
       // if (value != '' && !value.match(/\%/)) $(this).val('%'+value+'%');
 		});
 

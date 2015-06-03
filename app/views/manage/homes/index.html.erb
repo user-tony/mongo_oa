@@ -3,9 +3,22 @@
 <!-- new widget -->
 	<div role="widget" class="jarviswidget jarviswidget-color-blue jarviswidget-sortable" id="wid-id-4" data-widget-editbutton="false" data-widget-colorbutton="false">
 
-		<header role="heading"><div role="menu" class="jarviswidget-ctrls">   <a data-original-title="Collapse" href="javascript:void(0);" class="button-icon jarviswidget-toggle-btn" rel="tooltip" title="" data-placement="bottom"><i class="fa fa-minus "></i></a> <a data-original-title="Fullscreen" href="javascript:void(0);" class="button-icon jarviswidget-fullscreen-btn" rel="tooltip" title="" data-placement="bottom"><i class="fa fa-expand "></i></a> <a data-original-title="Delete" href="javascript:void(0);" class="button-icon jarviswidget-delete-btn" rel="tooltip" title="" data-placement="bottom"><i class="fa fa-times"></i></a></div>
+<!--图标栏css所在位置：smartadmin-skins.min.css-->
+
+		<header role="heading">
+			<div role="menu" class="jarviswidget-ctrls">   
+				<a data-original-title="Collapse" href="javascript:void(0);" class="button-icon jarviswidget-toggle-btn" rel="tooltip" title="" data-placement="bottom">
+					<i class="fa fa-minus "></i>
+				</a> 
+				<a data-original-title="Fullscreen" href="javascript:void(0);" class="button-icon jarviswidget-fullscreen-btn" rel="tooltip" title="" data-placement="bottom">
+					<i class="fa fa-expand "></i>
+				</a> 
+				<a data-original-title="Delete" href="javascript:void(0);" class="button-icon jarviswidget-delete-btn" rel="tooltip" title="" data-placement="bottom">
+					<i class="fa fa-times"></i>
+				</a>
+			</div>
 			<span class="widget-icon"> <i class="fa fa-check txt-color-white"></i> </span>
-			<h2> 公告列表 </h2> 
+			<h2> 公告列表</h2> 
 			<!-- <div class="widget-toolbar">
 			add: non-hidden - to disable auto hide
 
@@ -15,7 +28,7 @@
 		<!-- widget div-->
 		<div role="content">
 			<!-- widget edit box -->
-			<div class="jarviswidget-editbox">
+			<div class="jarviswidget-editbox"><!--smartAdmin-production.min.css-->
 				<div>
 					<label>Title:</label>
 					<input type="text">
@@ -29,12 +42,13 @@
 				<ul id="sortable1" class="todo ui-sortable">
 
 					
-					<% @posts.active.each do |post| %>
+					<% @posts.active.each do |post| %><!--从后台调用有效的公告-->
 						<li>
 							<span class="handle"> <label class="checkbox">
 									<input name="checkbox-inline" type="checkbox">
 									<i></i> </label> </span>
 							<p>
+								<!--<%= post.title %> -->
 								<strong> <%= post.title %> </strong>
 								 <%= post.content.to_s.truncate(20) %> [<%= link_to '详情', manage_post_path(post)  %>]
 								 <span class="text-muted">  </span>

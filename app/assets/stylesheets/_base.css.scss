@@ -54,7 +54,9 @@ body{
 	-moz-osx-font-smoothing: grayscale;
 	font-smoothing: antialiased;
 	text-rendering: optimizeLegibility;
-	color:$gray-darker;
+	//color:$gray-darker;
+	color:$red;
+
 }
 a{color:$link-color;text-decoration:none;
 	&:hover{color:$link-hover-color;text-decoration:underline;}

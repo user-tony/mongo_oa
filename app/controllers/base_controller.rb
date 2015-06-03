@@ -5,7 +5,7 @@ class BaseController < ApplicationController
 
 	private
 
-	def not_authenticated
+	def not_authenticated   #未授权
 		redirect_to new_user_session_path, :alert => "First login to access this page."
 	end
 
