@@ -1,3 +1,4 @@
+# 全局JS脚本
 #= require jquery
 #= require jquery_ujs
 #= require jquery/jquery.cookie

@@ -1,3 +1,4 @@
+# 登陆页面 JS 脚本
 #= require jquery
 #= require jquery_ujs
 #= require js/bootstrap

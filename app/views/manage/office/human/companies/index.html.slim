@@ -10,8 +10,6 @@ section#widget-grid
 					| &nbsp;|&nbsp;
 					= render 'manage/shared/search/array', field: 'id'
 					= render 'manage/shared/search/like', field: 'name'
-					= render 'manage/shared/search/range', field: 'created_at'
-					= render 'manage/shared/search/range', field: 'updated_at'
 					= render 'manage/shared/search/order', fields: %w[name]
 					= render 'manage/shared/search/page'
 					= submit_tag t(:search), name: nil, class: 'btn btn-primary'

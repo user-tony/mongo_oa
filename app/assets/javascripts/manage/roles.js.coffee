@@ -1,4 +1,4 @@
-
+# 权限页面 全选JS
 $(document).ready ->
 	$('#role_manage').on 'click', 'input', ->
 		ths = $(this)
