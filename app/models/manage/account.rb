@@ -31,6 +31,10 @@ class Manage::Account < ActiveRecord::Base
 		end
 		record
 	end
+  
+  def name
+    tries(:user, :name)
+  end
 	
   
   # 权限判断方法

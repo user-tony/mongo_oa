@@ -35,7 +35,7 @@ section#widget-grid
 						.widget-body.no-padding
 							table#dt_basic.table.table-striped.table-bordered.table-hover width="100%"
 								thead
-									- %i{ id pic name email birthday login_at created_at }.each do |field|
+									- %i{ id pic name login_at created_at }.each do |field|
 										th
 											i.fa.fa-fw.fa-user.text-muted.hidden-md.hidden-sm.hidden-xs
 											= model.human_attribute_name(field)
@@ -48,7 +48,6 @@ section#widget-grid
 											td = link_to account.id, manage_account_path(account)
 											td = account.pic
 											td = account.name
-											td = account.tries(:user, :email)
 											td = account.birthday
 											td = account.login_at
 											td = datetime_tag account.created_at

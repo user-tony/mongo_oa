@@ -12,17 +12,9 @@ class User < ActiveRecord::Base
 	scope :active,  -> { where active: true }
 
   # 验证字段属性  -------------------------------------
-  # 验证 邮箱
-  validates :email, uniqueness: true
-  validates :email, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i, on: :create }
-  # 确认密码字段 
 	validates_confirmation_of :password
   # 密码字段在创建时不能为空
 	validates_presence_of :password, :on => :create
-  # 邮箱不能为空
-	validates_presence_of :email
-  # 邮箱不能重复
-	validates_uniqueness_of :email
 	
   
   # 验证字段属性  -------------------------------------

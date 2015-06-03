@@ -30,16 +30,6 @@ br.clear
 			span.help-block
 				= f.error_message_on :password
 				
-	.form-group
-		= f.label :birthday, { class: 'col-md-2 control-label' }
-		.col-md-8
-			.input-group
-				= f.text_field :birthday, { "data-dateformat" => "dd/mm/yy", class: 'form-control datepicker hasDatepicker'}.merge(options_class)
-				span.input-group-addon
-					i.fa.fa-calendar
-			span.help-block
-				= f.error_message_on :birthday
-				
 	- if show
 		.form-group
 			= f.label :login_at, { class: 'col-md-2 control-label' }
