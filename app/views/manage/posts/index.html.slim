@@ -37,7 +37,7 @@ section#widget-grid
 						.widget-body.no-padding
 							table#dt_basic.table.table-striped.table-bordered.table-hover width="100%"
 								thead
-									- %i{ id title content published_at created_at }.each do |field|
+									- %i{ id title content created_at }.each do |field|
 										th
 											i.fa.fa-fw.fa-user.text-muted.hidden-md.hidden-sm.hidden-xs
 											= model.human_attribute_name(field)
@@ -50,7 +50,6 @@ section#widget-grid
 											td = link_to post.id, manage_post_path(post) 
 											td = post.title
 											td = post.content
-											td = datetime_tag post.published_at
 											td = datetime_tag post.created_at
 											td = render 'actions', record: post
 					/! end widget content

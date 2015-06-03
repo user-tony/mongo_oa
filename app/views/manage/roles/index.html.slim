@@ -5,8 +5,8 @@ section#widget-grid
 		/! NEW WIDGET START
 		article.col-xs-12.col-sm-12.col-md-12.col-lg-12
 		
-		<!--搜索功能-->
-		<!--<br class="class"></br>-->
+			/! 搜索功能
+			/! <br class="class"></br>
 			br.clear
 				= form_tag request.path, method: 'get', id: 'search_form' do
 					| &nbsp;|&nbsp;
@@ -21,20 +21,20 @@ section#widget-grid
 			.jarviswidget.jarviswidget-color-darken data-widget-editbutton="false"
 				header
 
-				<!--<span class="widget-icon"></span>-->
+				/! <span class="widget-icon"></span>
 
 					span.widget-icon
 						i.fa.fa-table
 					h2
 						= "#{model.model_name.human} #{t(:index)} (#{@roles.total_count})"
-						<!--=开头调用 ruby 的代码并显示,model.model_name.human是当前模型名称的i18n名称
-就是说中文版本就是显示中文，英文版本就显示英文.t(:index) 就是调用1in8翻译字段,@roles.total_count  当前数据的总数-->
+							/!--=开头调用 ruby 的代码并显示,model.model_name.human是当前模型名称的i18n名称
+							/! 就是说中文版本就是显示中文，英文版本就显示英文.t(:index) 就是调用1in8翻译字段,@roles.total_count  当前数据的总数
 						- if can?(:create, Manage::Role)
-						<!--调用 ruby 代码 但不显示-->
+							/! --调用 ruby 代码 但不显示
 							span style="margin-left: 30px"
 								= link_to t('new'), new_manage_role_path, class: 'btn btn-xs btn-default'
-								<!--添加新角色-->
-				<!--判断是否为空-->
+								/! --添加新角色--
+				/! --判断是否为空--
 				- if @roles.blank?
 					p.alert.alert-info.no-margin = t(:no_data)
 				- else
